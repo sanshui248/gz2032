@@ -6,5 +6,4 @@ public interface TestDemo {
 	
 	void reduce();
 	
-	void test_branch();
 }
