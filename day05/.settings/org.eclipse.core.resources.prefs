@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/org/gecedu/controller/user/UserLogoutServlet.java=UTF-8
+encoding//src/org/gecedu/dao/impl/DepartmentDaoImpl.java=UTF-8
+encoding//src/org/gecedu/dao/impl/UserDaoImpl.java=UTF-8
+encoding//src/org/gecedu/utils/JdbcUtils.java=UTF-8

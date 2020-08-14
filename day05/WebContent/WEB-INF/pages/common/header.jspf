@@ -1,0 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    
+    <c:set  var= "basepath" value="${pageContext.request.contextPath}"></c:set>
+    
+    <link href="${basepath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="${basepath}/assets/css/content.css" rel="stylesheet">
+    <script src="${basepath}/assets/js/jquery.min.js"></script>
+    <script src="${basepath}/assets/bootstrap/js/bootstrap.min.js"></script>
