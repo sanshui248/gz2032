@@ -4,4 +4,6 @@ public interface TestDemo {
 	void add();
 	
 	void reduce();
+	
+	void addAndReduce();
 }
