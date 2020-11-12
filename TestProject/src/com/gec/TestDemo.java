@@ -5,6 +5,13 @@ public class TestDemo {
 	public static String getName() {
 		return name;
 	}
+	
+	
+	public static void setName(String name) {
+		TestDemo.name = name;
+	}
+
+
 	public static void main(String[] args) {
 		System.out.println("Hello world!");
 	}
