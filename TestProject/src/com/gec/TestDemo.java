@@ -3,7 +3,7 @@ package com.gec;
 public class TestDemo {
 	static String name;
 	int age;
-
+	int demo;
 	public int getAge() {
 		return age;
 	}
