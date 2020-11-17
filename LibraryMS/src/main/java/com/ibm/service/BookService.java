@@ -6,13 +6,13 @@ import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
 
 public interface BookService {
-	public List<Book> selectAll();
+	public List<Book> selectAll(Integer pageNum, Integer pageSize);
 
 	public Book getById(Integer id);
 
-	public List<Book> selectByLabel(BookLabel bookLabel);
+	public List<Book> selectByLabel(BookLabel bookLabel, Integer pageNum, Integer pageSize);
 
-	public List<Book> selectByKey(String key);
+	public List<Book> selectByKey(String key, Integer pageNum, Integer pageSize);
 
 	public void save(Book book);
 

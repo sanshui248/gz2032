@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
 import com.ibm.service.BookService;
@@ -26,8 +27,10 @@ public class BookController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
-	public List<Book> selectBookList() {
-		return bookService.selectAll();
+	public PageInfo<Book> selectBookList(Integer pageNum, Integer pageSize) {
+		List<Book> books = bookService.selectAll(pageNum, pageSize);
+		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+		return pageInfo;
 	}
 
 	/**
@@ -48,8 +51,10 @@ public class BookController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list/label")
-	public List<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel) {
-		return bookService.selectByLabel(bookLabel);
+	public PageInfo<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel, Integer pageNum, Integer pageSize) {
+		List<Book> books = bookService.selectByLabel(bookLabel, pageNum, pageSize);
+		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+		return pageInfo;
 	}
 
 	/**
@@ -59,8 +64,10 @@ public class BookController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list/key")
-	public List<Book> selectBookListByKey(String key) {
-		return bookService.selectByKey(key);
+	public PageInfo<Book> selectBookListByKey(String key, Integer pageNum, Integer pageSize) {
+		List<Book> books = bookService.selectByKey(key, pageNum, pageSize);
+		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+		return pageInfo;
 	}
 
 	/**

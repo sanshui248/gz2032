@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
 import com.ibm.mapper.BookMapper;
@@ -17,8 +18,10 @@ public class BookServiceImpl implements BookService {
 	private BookMapper bookMapper;
 
 	@Override
-	public List<Book> selectAll() {
-		return bookMapper.selectAll();
+	public List<Book> selectAll(Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<Book> books = bookMapper.selectAll();
+		return books;
 	}
 
 	@Override
@@ -27,13 +30,17 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> selectByLabel(BookLabel bookLabel) {
-		return bookMapper.selectByLabel(bookLabel);
+	public List<Book> selectByLabel(BookLabel bookLabel, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<Book> books = bookMapper.selectByLabel(bookLabel);
+		return books;
 	}
 
 	@Override
-	public List<Book> selectByKey(String key) {
-		return bookMapper.selectByKey(key);
+	public List<Book> selectByKey(String key, Integer pageNum, Integer pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<Book> books = bookMapper.selectByKey(key);
+		return books;
 	}
 
 	@Override
