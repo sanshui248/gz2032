@@ -3,7 +3,7 @@ package com.ibm.mapper;
 import java.util.List;
 
 import com.ibm.domain.Book;
-import com.ibm.domain.BookKey;
+import com.ibm.domain.BookLabel;
 
 public interface BookMapper {
 
@@ -13,8 +13,11 @@ public interface BookMapper {
 	// 根据ID查询图书信息
 	public Book getById(Integer id);
 
-	// 根据设置的关键字查找图书信息
-	public List<Book> selectByKeys(BookKey bookKey);
+	// 根据设置的标签查找图书信息
+	public List<Book> selectByLabel(BookLabel bookLabel);
+
+	// 根据关键字模糊查询图书信息
+	public List<Book> selectByKey(String key);
 
 	// 保存图书信息
 	public void save(Book book);

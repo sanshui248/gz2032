@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ibm.domain.Book;
-import com.ibm.domain.BookKey;
+import com.ibm.domain.BookLabel;
 import com.ibm.service.BookService;
 
 @Controller
@@ -42,14 +42,25 @@ public class BookController {
 	}
 
 	/**
-	 * @Description 根据设置的关键字获取对应图书信息
+	 * @Description 根据设置的标签获取对应图书信息
 	 * @param 图书关键字类
 	 * @return 对应的图书信息列表
 	 */
 	@ResponseBody
-	@RequestMapping("/list/keys")
-	public List<Book> selectBookList(@RequestBody BookKey bookKey) {
-		return bookService.selectByKeys(bookKey);
+	@RequestMapping("/list/label")
+	public List<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel) {
+		return bookService.selectByLabel(bookLabel);
+	}
+
+	/**
+	 * @Description 根据关键字模糊查询对应图书信息
+	 * @param 关键字
+	 * @return 对应的图书信息列表
+	 */
+	@ResponseBody
+	@RequestMapping("/list/key")
+	public List<Book> selectBookListByKey(String key) {
+		return bookService.selectByKey(key);
 	}
 
 	/**

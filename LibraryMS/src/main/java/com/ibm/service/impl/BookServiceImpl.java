@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ibm.domain.Book;
-import com.ibm.domain.BookKey;
+import com.ibm.domain.BookLabel;
 import com.ibm.mapper.BookMapper;
 import com.ibm.service.BookService;
 
@@ -27,8 +27,13 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<Book> selectByKeys(BookKey bookKey) {
-		return bookMapper.selectByKeys(bookKey);
+	public List<Book> selectByLabel(BookLabel bookLabel) {
+		return bookMapper.selectByLabel(bookLabel);
+	}
+
+	@Override
+	public List<Book> selectByKey(String key) {
+		return bookMapper.selectByKey(key);
 	}
 
 	@Override

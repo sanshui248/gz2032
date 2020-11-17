@@ -3,14 +3,16 @@ package com.ibm.service;
 import java.util.List;
 
 import com.ibm.domain.Book;
-import com.ibm.domain.BookKey;
+import com.ibm.domain.BookLabel;
 
 public interface BookService {
 	public List<Book> selectAll();
 
 	public Book getById(Integer id);
 
-	public List<Book> selectByKeys(BookKey bookKey);
+	public List<Book> selectByLabel(BookLabel bookLabel);
+
+	public List<Book> selectByKey(String key);
 
 	public void save(Book book);
 
