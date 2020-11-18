@@ -12,7 +12,7 @@ public interface AnnounceMapper {
 	public void deleteAnnounce();
 	
 	//更改通知
-	public void updateAnnounce();
+	public void updateAnnounce(Announce announce);
 	
 	
 	
