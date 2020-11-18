@@ -11,7 +11,7 @@
 		select * from book where book_id = #{id}
 	</select>
 	
-	<select id="selectByKeys" parameterType="com.ibm.domain.BookKey" resultType="com.ibm.domain.Book">
+	<select id="selectByLabel" parameterType="com.ibm.domain.BookLabel" resultType="com.ibm.domain.Book">
 		select * from book
 		<where>
 			<if test="country != null and country != '' ">
@@ -24,9 +24,18 @@
 				and theme = #{theme}
 			</if>
 			<if test="lengthRange != null and lengthRange != 0 ">
-				and country between #{minPage} and #{maxPage}
+				and pages between #{minPage} and #{maxPage}
 			</if>
 		</where>
+	</select>
+	
+	<select id="selectByKey" parameterType="String" resultType="com.ibm.domain.Book">
+		select * from book 
+		where book_name like concat('%', #{key}, '%')
+		or country like concat('%', #{key}, '%')
+		or type like concat('%', #{key}, '%')
+		or theme like concat('%', #{key}, '%')
+		or book_id = #{key}
 	</select>
 	
 	<insert id="save" parameterType="com.ibm.domain.Book">

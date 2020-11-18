@@ -1,7 +1,7 @@
 package com.ibm.domain;
 
-//图书信息关键字类
-public class BookKey {
+//图书信息标签类
+public class BookLabel {
 
 	private String country; // 国家
 	private String type; // 类型
@@ -38,16 +38,26 @@ public class BookKey {
 		return lengthRange;
 	}
 
+	// 根据篇幅区间设置最小和最大最小篇幅范围
+	// 1:(1--500) 2:(501--1000) 3:(1001--1500) 4:(>1501)
 	public void setLengthRange(Integer lengthRange) {
 		this.lengthRange = lengthRange;
 		switch (lengthRange) {
 		case 1:
-			this.setMinPage(0);
-			this.setMaxPage(1000);
+			this.setMinPage(1);
+			this.setMaxPage(500);
 			break;
 		case 2:
+			this.setMinPage(501);
+			this.setMaxPage(1000);
+			break;
+		case 3:
 			this.setMinPage(1001);
-			this.setMaxPage(2000);
+			this.setMaxPage(1500);
+			break;
+		case 4:
+			this.setMinPage(1501);
+			this.setMaxPage(Integer.MAX_VALUE);
 			break;
 		default:
 			break;
@@ -68,6 +78,12 @@ public class BookKey {
 
 	public void setMaxPage(Integer maxPage) {
 		this.maxPage = maxPage;
+	}
+
+	@Override
+	public String toString() {
+		return "BookKey [country=" + country + ", type=" + type + ", theme=" + theme + ", lengthRange=" + lengthRange
+				+ ", minPage=" + minPage + ", maxPage=" + maxPage + "]";
 	}
 
 }

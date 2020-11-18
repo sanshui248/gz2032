@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.ibm.domain.Book;
-import com.ibm.domain.BookKey;
+import com.ibm.domain.BookLabel;
 import com.ibm.service.BookService;
 
 @Controller
@@ -26,8 +27,10 @@ public class BookController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
-	public List<Book> selectBookList() {
-		return bookService.selectAll();
+	public PageInfo<Book> selectBookList(Integer pageNum, Integer pageSize) {
+		List<Book> books = bookService.selectAll(pageNum, pageSize);
+		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+		return pageInfo;
 	}
 
 	/**
@@ -42,14 +45,29 @@ public class BookController {
 	}
 
 	/**
-	 * @Description 根据设置的关键字获取对应图书信息
+	 * @Description 根据设置的标签获取对应图书信息
 	 * @param 图书关键字类
 	 * @return 对应的图书信息列表
 	 */
 	@ResponseBody
-	@RequestMapping("/list/keys")
-	public List<Book> selectBookList(@RequestBody BookKey bookKey) {
-		return bookService.selectByKeys(bookKey);
+	@RequestMapping("/list/label")
+	public PageInfo<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel, Integer pageNum, Integer pageSize) {
+		List<Book> books = bookService.selectByLabel(bookLabel, pageNum, pageSize);
+		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+		return pageInfo;
+	}
+
+	/**
+	 * @Description 根据关键字模糊查询对应图书信息
+	 * @param 关键字
+	 * @return 对应的图书信息列表
+	 */
+	@ResponseBody
+	@RequestMapping("/list/key")
+	public PageInfo<Book> selectBookListByKey(String key, Integer pageNum, Integer pageSize) {
+		List<Book> books = bookService.selectByKey(key, pageNum, pageSize);
+		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+		return pageInfo;
 	}
 
 	/**
