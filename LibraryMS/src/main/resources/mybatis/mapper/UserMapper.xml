@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ibm.mapper.UserMapper">
+	<select id="getUserByName" parameterType="string" resultType="com.ibm.domain.User">
+		select * from user where name=#{name}
+	</select>
+
 	<insert id="saveUser" parameterType="com.ibm.domain.User">
 		INSERT 
 		USER(name,sex,age,email,password,birthday,phone,address,introduction,identity,books_number) 
@@ -19,7 +23,7 @@
 	</update>
 	
 	<select id="selectAllUser" resultType="com.ibm.domain.User">
-		select * from user;
+		select * from user
 	</select>
 	
 	<select id="selectBorrowingDetailsByUserId" parameterType="int" resultType="com.ibm.domain.BorrowingDetails">
