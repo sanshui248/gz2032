@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
@@ -26,32 +27,18 @@ public class BorrowController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list")
-	public PageInfo<BorrowingDetails> selectBorrowList(Integer pageNum, Integer pageSize) {
+	public PageInfo<BorrowingDetails> selectBorrowList(
+			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
+			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
 		List<BorrowingDetails> borrows = borrowService.selectAll(pageNum, pageSize);
 		PageInfo<BorrowingDetails> pageInfo = new PageInfo<BorrowingDetails>(borrows);
+		System.out.println("Bo-day:" + borrowService.getBorrowCountByDay());
+		System.out.println("Re-day:" + borrowService.getReturnCountByDay());
+		System.out.println("Bo-mon:" + borrowService.getBorrowCountByMon());
+		System.out.println("Re-mon:" + borrowService.getReturnCountByMon());
+		System.out.println("Bo-year:" + borrowService.getBorrowCountByYear());
+		System.out.println("Re-year:" + borrowService.getReturnCountByYear());
 		return pageInfo;
-	}
-
-	/**
-	 * @Description 根据用户ID获取对应借阅记录
-	 * @param 用户ID
-	 * @return 对应用户的借阅记录
-	 */
-	@ResponseBody
-	@RequestMapping("/query/user")
-	public List<BorrowingDetails> selectBorrowByUserId(Integer userId) {
-		return borrowService.selectByUserId(userId);
-	}
-
-	/**
-	 * @Description 根据图书ID获取对应借阅记录
-	 * @param 图书ID
-	 * @return 对应图书的借阅记录
-	 */
-	@ResponseBody
-	@RequestMapping("/query/book")
-	public List<BorrowingDetails> selectBorrowByBookId(Integer bookId) {
-		return borrowService.selectByBookId(bookId);
 	}
 
 	/**
@@ -61,7 +48,9 @@ public class BorrowController {
 	 */
 	@ResponseBody
 	@RequestMapping("/list/key")
-	public PageInfo<BorrowingDetails> selectBorrowListByKey(String key, Integer pageNum, Integer pageSize) {
+	public PageInfo<BorrowingDetails> selectBorrowListByKey(String key,
+			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
+			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
 		List<BorrowingDetails> borrows = borrowService.selectByKey(key, pageNum, pageSize);
 		PageInfo<BorrowingDetails> pageInfo = new PageInfo<BorrowingDetails>(borrows);
 		return pageInfo;

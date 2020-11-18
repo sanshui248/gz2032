@@ -1,6 +1,7 @@
 package com.ibm.domain;
 
 import java.util.Date;
+import java.util.List;
 
 //图书信息类
 public class Book {
@@ -17,6 +18,7 @@ public class Book {
 	private Integer offNumber; // 下架数量
 	private Date offTime; // 下架时间
 	private Integer surplusNumber; // 剩余数量
+	private List<BorrowingDetails> borrows; // 借阅记录
 
 	public Integer getBookId() {
 		return bookId;
@@ -114,12 +116,12 @@ public class Book {
 		this.surplusNumber = surplusNumber;
 	}
 
-	@Override
-	public String toString() {
-		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", country=" + country + ", type=" + type
-				+ ", theme=" + theme + ", pages=" + pages + ", brief=" + brief + ", onNumber=" + onNumber + ", onTime="
-				+ onTime + ", offNumber=" + offNumber + ", offTime=" + offTime + ", surplusNumber=" + surplusNumber
-				+ "]";
+	public List<BorrowingDetails> getBorrows() {
+		return borrows;
+	}
+
+	public void setBorrows(List<BorrowingDetails> borrows) {
+		this.borrows = borrows;
 	}
 
 }

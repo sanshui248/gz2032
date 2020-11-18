@@ -10,21 +10,45 @@
 		and book.book_id = borrow.book_id
 	</select>
 	
-	<select id="selectByUserId" parameterType="Integer" resultType="com.ibm.domain.BorrowingDetails">
-		select * from borrow where user_id = #{id}
-	</select>
-	
-	<select id="selectByBookId" parameterType="Integer" resultType="com.ibm.domain.BorrowingDetails">
-		select * from borrow where book_id = #{id}
-	</select>
-	
 	<select id="selectByKey" parameterType="String" resultType="com.ibm.domain.BorrowingDetails">
-		select user.*, book.*, borrow.*
+		select borrow.*, user.name, book.book_name
 		from user, book, borrow
 		where user.user_id = borrow.user_id
 		and book.book_id = borrow.book_id
-		and (user.name like concat('%', #{key}, '%')
-		or book.book_name like '%concat('%', #{key}, '%'))
+		and (user.name like concat('%', #{key}, '%') or book.book_name like concat('%', #{key}, '%'))
+	</select>
+	
+	<select id="getCountByDay" resultType="Integer">
+		select count(*) from borrow
+		where 
+		<if test="boOrRu == 1">
+			borrow_time = #{day}
+		</if>
+		<if test="boOrRu == 2">
+			return_time = #{day}
+		</if>
+	</select>
+	
+	<select id="getCountByMon" resultType="Integer">
+		select count(*) from borrow
+		where 
+		<if test="boOrRu == 1">
+			borrow_time between concat(#{mon},'-01') and concat(#{mon},'-31')
+		</if>
+		<if test="boOrRu == 2">
+			return_time between concat(#{mon}, '-01') and concat(#{mon}, '-31')
+		</if>
+	</select>
+	
+	<select id="getCountByYear" resultType="Integer">
+		select count(*) from borrow
+		where 
+		<if test="boOrRu == 1">
+			borrow_time between concat(#{year},'-01-01') and concat(#{year},'-12-31')
+		</if>
+		<if test="boOrRu == 2">
+			return_time between concat(#{year}, '-01-01') and concat(#{year}, '-12-31')
+		</if>
 	</select>
 	
 	<insert id="save" parameterType="com.ibm.domain.BorrowingDetails">
@@ -39,7 +63,7 @@
 	<update id="update" parameterType="com.ibm.domain.BorrowingDetails">
 		update borrow set 
 		user_id=#{userId}, book_id=#{bookId}, borrow_time=#{borrowTime}, deadline=#{deadline}, 
-		valid_time=#{validTime} borrow_stutas=#{borrowStutas}, return_time=#{returnTime}
+		valid_time=#{validTime}, borrow_stutas=#{borrowStutas}, return_time=#{returnTime}
 		where user_id = #{userId} and book_id=#{bookId}
 	</update>
 </mapper>

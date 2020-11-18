@@ -128,4 +128,12 @@ public class BorrowingDetails {
 		this.borrowStutas = borrowStutas;
 	}
 
+	@Override
+	public String toString() {
+		return "BorrowingDetails [userId=" + userId + ", name=" + name + ", bookId=" + bookId + ", bookName=" + bookName
+				+ ", borrowTime=" + borrowTime + ", borrowTimeStr=" + borrowTimeStr + ", deadline=" + deadline
+				+ ", deadlineStr=" + deadlineStr + ", returnTime=" + returnTime + ", returnTimeStr=" + returnTimeStr
+				+ ", validTime=" + validTime + ", borrowStutas=" + borrowStutas + "]";
+	}
+
 }

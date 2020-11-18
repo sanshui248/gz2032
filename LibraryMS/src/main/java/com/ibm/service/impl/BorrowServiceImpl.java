@@ -1,5 +1,7 @@
 package com.ibm.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +26,52 @@ public class BorrowServiceImpl implements BorrowService {
 	}
 
 	@Override
-	public List<BorrowingDetails> selectByUserId(Integer id) {
-		List<BorrowingDetails> borrows = borrowMapper.selectByUserId(id);
-		return borrows;
-	}
-
-	@Override
-	public List<BorrowingDetails> selectByBookId(Integer id) {
-		List<BorrowingDetails> borrows = borrowMapper.selectByBookId(id);
-		return borrows;
-	}
-
-	@Override
 	public List<BorrowingDetails> selectByKey(String key, Integer pageNum, Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<BorrowingDetails> borrows = borrowMapper.selectByKey(key);
 		return borrows;
+	}
+
+	@Override
+	public Integer getBorrowCountByDay() {
+		Date day = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		return borrowMapper.getCountByDay(1, ft.format(day));
+	}
+
+	@Override
+	public Integer getReturnCountByDay() {
+		Date day = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+		return borrowMapper.getCountByDay(2, ft.format(day));
+	}
+
+	@Override
+	public Integer getBorrowCountByMon() {
+		Date mon = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM");
+		return borrowMapper.getCountByMon(1, ft.format(mon));
+	}
+
+	@Override
+	public Integer getReturnCountByMon() {
+		Date mon = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM");
+		return borrowMapper.getCountByMon(2, ft.format(mon));
+	}
+
+	@Override
+	public Integer getBorrowCountByYear() {
+		Date year = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy");
+		return borrowMapper.getCountByYear(1, ft.format(year));
+	}
+
+	@Override
+	public Integer getReturnCountByYear() {
+		Date year = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy");
+		return borrowMapper.getCountByYear(2, ft.format(year));
 	}
 
 	@Override
