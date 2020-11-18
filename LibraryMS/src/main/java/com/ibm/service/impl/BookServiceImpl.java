@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
+import com.ibm.domain.BorrowingDetails;
 import com.ibm.mapper.BookMapper;
 import com.ibm.service.BookService;
 
@@ -41,6 +42,12 @@ public class BookServiceImpl implements BookService {
 		PageHelper.startPage(pageNum, pageSize);
 		List<Book> books = bookMapper.selectByKey(key);
 		return books;
+	}
+
+	@Override
+	public List<BorrowingDetails> selectBorrowsByUserId(Integer id) {
+		List<BorrowingDetails> borrows = bookMapper.selectBorrowsByBookId(id);
+		return borrows;
 	}
 
 	@Override

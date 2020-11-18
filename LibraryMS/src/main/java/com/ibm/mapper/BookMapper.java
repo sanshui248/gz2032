@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
+import com.ibm.domain.BorrowingDetails;
 
 public interface BookMapper {
 
@@ -18,6 +19,9 @@ public interface BookMapper {
 
 	// 根据关键字模糊查询图书信息
 	public List<Book> selectByKey(String key);
+
+	// 根据图书ID查询借阅记录
+	public List<BorrowingDetails> selectBorrowsByBookId(Integer id);
 
 	// 保存图书信息
 	public void save(Book book);

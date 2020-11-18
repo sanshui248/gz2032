@@ -77,6 +77,19 @@ public class BookController {
 	}
 
 	/**
+	 * @Description 根据图书ID设置图书借阅记录列表
+	 * @param 图书ID
+	 * @return 更新好的图书信息类
+	 */
+	@ResponseBody
+	@RequestMapping("/borrows")
+	public Book setBookBorrows(Integer id) {
+		Book book = bookService.getById(id);
+		book.setBorrows(bookService.selectBorrowsByUserId(id));
+		return book;
+	}
+
+	/**
 	 * @Description 添加图书信息
 	 * @param 新的图书信息
 	 * @return 跳转到列表页面

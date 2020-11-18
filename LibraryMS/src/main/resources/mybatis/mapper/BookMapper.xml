@@ -38,6 +38,14 @@
 		or book_id = #{key}
 	</select>
 	
+	<select id="selectBorrowsByBookId" parameterType="Integer" resultType="com.ibm.domain.BorrowingDetails">
+		select borrow.*, user.name, book.book_name
+		from user, book, borrow
+		where user.user_id = borrow.user_id
+		and book.book_id = borrow.book_id
+		and book.book_id = #{id}
+	</select>
+	
 	<insert id="save" parameterType="com.ibm.domain.Book">
 		insert into book(book_name,country,type,theme,pages,brief,on_number,on_time,off_number,off_time,surplus_number) 
 		values (#{bookName},#{country},#{type},#{theme},#{pages},#{brief},#{onNumber},#{onTime},#{offNumber},#{offTime},#{surplusNumber})
