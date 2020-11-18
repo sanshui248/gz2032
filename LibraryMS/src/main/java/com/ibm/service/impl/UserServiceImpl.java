@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
 import com.ibm.mapper.UserMapper;
 import com.ibm.service.UserService;
@@ -40,6 +41,18 @@ public class UserServiceImpl implements UserService{
 		PageHelper.startPage(pageNum, pageSize);
 		List<User> selectUserByPage = this.userMapper.selectAllUser();
 		return selectUserByPage;
+	}
+
+	@Override
+	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int userId) {
+		List<BorrowingDetails> borrowHistory = this.userMapper.selectBorrowingDetailsByUserId(userId);
+		return borrowHistory;
+	}
+
+	@Override
+	public void deleteUser(int userId) {
+		this.userMapper.deleteUser(userId);
+		
 	}
 
 }

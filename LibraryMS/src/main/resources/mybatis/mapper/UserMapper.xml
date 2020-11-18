@@ -27,10 +27,14 @@
 	</select>
 	
 	<select id="selectBorrowingDetailsByUserId" parameterType="int" resultType="com.ibm.domain.BorrowingDetails">
-		SELECT book_name,borrow_time,deadline,valid_time,borrow_stutas,return_time 
-		FROM book 
-		INNER JOIN (SELECT book_id id,borrow_time,deadline,valid_time,borrow_stutas,return_time FROM borrow 
-		INNER JOIN USER ON #{id}=borrow.`user_id`) user_borrow
-		ON book.book_id=user_borrow.id
+		SELECT user_id,book_id,book_name,user.name name,borrow_time,deadline,valid_time,borrow_stutas,return_time 
+		FROM user 
+		INNER JOIN (SELECT book.book_id book_id,book_name,borrow_time,deadline,valid_time,borrow_stutas,return_time FROM borrow  
+		INNER JOIN book ON book.book_id=borrow.book_id where user_id=#{userId}) book_borrow 
+		ON user.user_id=#{userId}
 	</select>
+	
+	<delete id="deleteUser" parameterType="int">
+		delete user,borrow from user left join borrow on user.user_id=borrow.user_id where user.user_id=#{userId};
+	</delete>
 </mapper>

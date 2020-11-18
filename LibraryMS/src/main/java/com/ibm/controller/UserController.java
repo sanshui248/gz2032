@@ -4,12 +4,19 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
 import com.ibm.service.UserService;
 
+/**
+ * 
+ * @author 吕守淼
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -54,4 +61,27 @@ public class UserController {
 		return selectUserListByPage;
 	}
 	
+	/**
+	 * 用户详情
+	 * @param userId 用户id
+	 * @return
+	 */
+	@RequestMapping("/selectBorrowHistory")
+	@ResponseBody
+	public List<BorrowingDetails> selectBorrowHistory(int userId) {
+		List<BorrowingDetails> selectBorrowHistory = this.userService.selectBorrowingDetailsByUserId(userId);
+		return selectBorrowHistory;
+	}
+	
+	/**
+	 * 注销用户
+	 * @param userId  用户id
+	 * @return
+	 */
+	@RequestMapping("/deleteUser/{userId}")
+	@ResponseBody
+	public String deleteUser(@PathVariable("userId") int userId) {
+		this.userService.deleteUser(userId);
+		return "删除成功";
+	} 
 }

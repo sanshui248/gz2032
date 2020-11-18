@@ -2,6 +2,7 @@ package com.ibm.domain;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class User {
 	private int userId; // 用户id
@@ -17,6 +18,14 @@ public class User {
 	private String address;// 居住地址
 	private String introduction;// 个人描述
 	private int booksNumber;// 可借书籍数量
+	private List<BorrowingDetails> borrowingHistory;
+	
+	public List<BorrowingDetails> getBorrowingHistory() {
+		return borrowingHistory;
+	}
+	public void setBorrowingHistory(List<BorrowingDetails> borrowingHistory) {
+		this.borrowingHistory = borrowingHistory;
+	}
 	public String getBirthdayStr() {
 		return birthdayStr;
 	}

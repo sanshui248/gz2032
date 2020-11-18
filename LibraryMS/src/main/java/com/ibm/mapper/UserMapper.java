@@ -15,4 +15,6 @@ public interface UserMapper {
 	public List<User> selectAllUser();//查询所有用户
 	
 	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int id);//查询用户借阅详情
+
+	public void deleteUser(int userId);
 }
