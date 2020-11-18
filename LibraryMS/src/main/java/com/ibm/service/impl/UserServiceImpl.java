@@ -17,6 +17,15 @@ public class UserServiceImpl implements UserService{
 	UserMapper userMapper;
 
 	@Override
+	public User getUserByName(String name) {
+		User user = this.userMapper.getUserByName(name);
+		if (user!=null) {
+			return user;
+		}
+		return null;
+	}
+	
+	@Override
 	public void saveUser(User user) {
 		this.userMapper.saveUser(user);
 	}
