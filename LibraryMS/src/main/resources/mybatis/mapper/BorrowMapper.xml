@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibm.mapper.BorrowMapper">
+	<select id="selectAll" resultType="com.ibm.domain.BorrowingDetails">
+		select borrow.*, user.name, book.book_name
+		from user, book, borrow
+		where user.user_id = borrow.user_id
+		and book.book_id = borrow.book_id
+	</select>
+	
+	<select id="selectByUserId" parameterType="Integer" resultType="com.ibm.domain.BorrowingDetails">
+		select * from borrow where user_id = #{id}
+	</select>
+	
+	<select id="selectByBookId" parameterType="Integer" resultType="com.ibm.domain.BorrowingDetails">
+		select * from borrow where book_id = #{id}
+	</select>
+	
+	<select id="selectByKey" parameterType="String" resultType="com.ibm.domain.BorrowingDetails">
+		select user.*, book.*, borrow.*
+		from user, book, borrow
+		where user.user_id = borrow.user_id
+		and book.book_id = borrow.book_id
+		and (user.name like concat('%', #{key}, '%')
+		or book.book_name like '%concat('%', #{key}, '%'))
+	</select>
+	
+	<insert id="save" parameterType="com.ibm.domain.BorrowingDetails">
+		insert into borrow(user_id,book_id,borrow_time,deadline,valid_time,borrow_stutas,return_time) 
+		values (#{userId},#{bookId},#{borrowTime},#{deadline},#{validTime},#{borrowStutas},#{returnTime})
+	</insert>
+	
+	<delete id="deleteById">
+		delete from borrow where user_id = #{uid} and book_id = #{bid}
+	</delete>
+	
+	<update id="update" parameterType="com.ibm.domain.BorrowingDetails">
+		update borrow set 
+		user_id=#{userId}, book_id=#{bookId}, borrow_time=#{borrowTime}, deadline=#{deadline}, 
+		valid_time=#{validTime} borrow_stutas=#{borrowStutas}, return_time=#{returnTime}
+		where user_id = #{userId} and book_id=#{bookId}
+	</update>
+</mapper>
