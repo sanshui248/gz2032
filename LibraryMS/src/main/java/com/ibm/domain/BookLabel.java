@@ -1,6 +1,6 @@
 package com.ibm.domain;
 
-//图书信息关键字类
+//图书信息标签类
 public class BookLabel {
 
 	private String country; // 国家
