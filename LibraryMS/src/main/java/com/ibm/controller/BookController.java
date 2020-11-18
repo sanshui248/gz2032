@@ -22,7 +22,7 @@ public class BookController {
 
 	/**
 	 * @Description 获取图书信息列表
-	 * @param
+	 * @param pageNum：页数 pageSize：页面记录数
 	 * @return 图书信息列表
 	 */
 	@ResponseBody
@@ -40,13 +40,13 @@ public class BookController {
 	 */
 	@ResponseBody
 	@RequestMapping("/query")
-	public Book selectBookList(Integer bookId) {
+	public Book selectBookById(Integer bookId) {
 		return bookService.getById(bookId);
 	}
 
 	/**
 	 * @Description 根据设置的标签获取对应图书信息
-	 * @param 图书关键字类
+	 * @param bookLabel：图书关键字类 pageNum：页数 pageSize：页面记录数
 	 * @return 对应的图书信息列表
 	 */
 	@ResponseBody
