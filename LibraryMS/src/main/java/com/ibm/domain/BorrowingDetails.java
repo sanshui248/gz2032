@@ -31,6 +31,18 @@ public class BorrowingDetails {
 		this.book = book;
 	}
 
+	public void setBorrowTimeStr(String borrowTimeStr) {
+		this.borrowTimeStr = borrowTimeStr;
+	}
+
+	public void setDeadlineStr(String deadlineStr) {
+		this.deadlineStr = deadlineStr;
+	}
+
+	public void setReturnTimeStr(String returnTimeStr) {
+		this.returnTimeStr = returnTimeStr;
+	}
+
 	public Date getBorrowTime() {
 		return borrowTime;
 	}

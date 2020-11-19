@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,9 @@ public class BorrowController {
 	 * @param pageNum：页数 pageSize：页面记录数
 	 * @return 借阅记录列表
 	 */
+
 	@ResponseBody
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/list")
 	public PageInfo<BorrowingDetails> selectBorrowList(
 			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
