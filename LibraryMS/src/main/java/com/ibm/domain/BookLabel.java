@@ -3,37 +3,13 @@ package com.ibm.domain;
 //图书信息标签类
 public class BookLabel {
 
-	private String country; // 国家
-	private String type; // 类型
-	private String theme; // 主题
+	private int countryId; // 国家id
+	private int typeId; // 类型id
+	private int themeId; // 主题id
 	private Integer lengthRange; // 篇幅区间
 	private Integer minPage; // 最小篇幅范围
 	private Integer maxPage; // 最大篇幅范围
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getTheme() {
-		return theme;
-	}
-
-	public void setTheme(String theme) {
-		this.theme = theme;
-	}
-
+	
 	public Integer getLengthRange() {
 		return lengthRange;
 	}
@@ -80,10 +56,30 @@ public class BookLabel {
 		this.maxPage = maxPage;
 	}
 
-	@Override
-	public String toString() {
-		return "BookKey [country=" + country + ", type=" + type + ", theme=" + theme + ", lengthRange=" + lengthRange
-				+ ", minPage=" + minPage + ", maxPage=" + maxPage + "]";
+	public int getCountryId() {
+		return countryId;
 	}
+
+	public void setCountryId(int countryId) {
+		this.countryId = countryId;
+	}
+
+	public int getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(int typeId) {
+		this.typeId = typeId;
+	}
+
+	public int getThemeId() {
+		return themeId;
+	}
+
+	public void setThemeId(int themeId) {
+		this.themeId = themeId;
+	}
+
+	
 
 }

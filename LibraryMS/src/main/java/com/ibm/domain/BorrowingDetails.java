@@ -15,7 +15,7 @@ public class BorrowingDetails {
 	private Date returnTime; // 归还日期
 	private String returnTimeStr; // 归还日期--String类型
 	private int validTime; // 借阅有效期
-	private int borrowStutas; // 借阅状态
+	private int borrowStates; // 借阅状态
 
 	public Integer getUserId() {
 		return userId;
@@ -120,20 +120,14 @@ public class BorrowingDetails {
 		this.validTime = validTime;
 	}
 
-	public int getBorrowStutas() {
-		return borrowStutas;
+	public int getBorrowStates() {
+		return borrowStates;
 	}
 
-	public void setBorrowStutas(int borrowStutas) {
-		this.borrowStutas = borrowStutas;
+	public void setBorrowStates(int borrowStates) {
+		this.borrowStates = borrowStates;
 	}
 
-	@Override
-	public String toString() {
-		return "BorrowingDetails [userId=" + userId + ", name=" + name + ", bookId=" + bookId + ", bookName=" + bookName
-				+ ", borrowTime=" + borrowTime + ", borrowTimeStr=" + borrowTimeStr + ", deadline=" + deadline
-				+ ", deadlineStr=" + deadlineStr + ", returnTime=" + returnTime + ", returnTimeStr=" + returnTimeStr
-				+ ", validTime=" + validTime + ", borrowStutas=" + borrowStutas + "]";
-	}
+	
 
 }

@@ -21,13 +21,13 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<Book> selectAll(Integer pageNum, Integer pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
-		List<Book> books = bookMapper.selectAll();
+		List<Book> books = this.bookMapper.selectAll();
 		return books;
 	}
 
 	@Override
 	public Book getById(Integer id) {
-		return bookMapper.getById(id);
+		return this.bookMapper.getById(id);
 	}
 
 	@Override

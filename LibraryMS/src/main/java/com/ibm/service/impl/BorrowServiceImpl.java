@@ -101,7 +101,7 @@ public class BorrowServiceImpl implements BorrowService {
 		BorrowingDetails borrowingDetails = new BorrowingDetails();
 		borrowingDetails.setUserId(userId);
 		borrowingDetails.setBookId(bookId);
-		borrowingDetails.setBorrowStutas(1);
+		borrowingDetails.setBorrowStates(1);
 		borrowingDetails.setBorrowTime(new Date());
 		borrowingDetails.setDeadline(DateConversion.stepDay(new Date(), 30));
 		borrowingDetails.setValidTime(30);

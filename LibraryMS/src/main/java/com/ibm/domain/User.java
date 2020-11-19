@@ -18,7 +18,7 @@ public class User {
 	private String address;// 居住地址
 	private String introduction;// 个人描述
 	private int booksNumber;// 可借书籍数量
-	private List<BorrowingDetails> borrowingHistory;
+	private List<BorrowingDetails> borrowingHistory;//借阅历史
 	
 	public List<BorrowingDetails> getBorrowingHistory() {
 		return borrowingHistory;

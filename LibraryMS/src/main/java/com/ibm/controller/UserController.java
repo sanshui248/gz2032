@@ -152,7 +152,7 @@ public class UserController {
 		borrowingDetails2.setUserId(userId);
 		BorrowingDetails borrowingDetails = this.borrowService.selectByBookIdAndUserId(borrowingDetails2);
 		
-		borrowingDetails.setBorrowStutas(0);
+		borrowingDetails.setBorrowStates(0);
 		borrowingDetails.setReturnTime(new Date());
 		this.borrowService.update(borrowingDetails);
 		book.setSurplusNumber(book.getSurplusNumber()+1);
