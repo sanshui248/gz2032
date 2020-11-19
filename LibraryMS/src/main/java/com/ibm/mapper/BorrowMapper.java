@@ -29,5 +29,7 @@ public interface BorrowMapper {
 
 	// 更新借阅记录
 	public void update(BorrowingDetails borrow);
+	//查找借阅内容
+	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails);
 
 }

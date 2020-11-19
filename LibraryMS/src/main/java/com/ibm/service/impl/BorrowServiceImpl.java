@@ -11,6 +11,7 @@ import com.github.pagehelper.PageHelper;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.mapper.BorrowMapper;
 import com.ibm.service.BorrowService;
+import com.ibm.utils.DateConversion;
 
 @Service
 public class BorrowServiceImpl implements BorrowService {
@@ -87,6 +88,24 @@ public class BorrowServiceImpl implements BorrowService {
 	@Override
 	public void update(BorrowingDetails borrow) {
 		borrowMapper.update(borrow);
+	}
+
+	@Override
+	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails) {
+		BorrowingDetails borrow = this.borrowMapper.selectByBookIdAndUserId(borrowingDetails);
+		return borrow;
+	}
+
+	@Override
+	public void saveBorrowRecords(int userId, int bookId) {
+		BorrowingDetails borrowingDetails = new BorrowingDetails();
+		borrowingDetails.setUserId(userId);
+		borrowingDetails.setBookId(bookId);
+		borrowingDetails.setBorrowStutas(1);
+		borrowingDetails.setBorrowTime(new Date());
+		borrowingDetails.setDeadline(DateConversion.stepDay(new Date(), 30));
+		borrowingDetails.setValidTime(30);
+		this.borrowMapper.save(borrowingDetails);
 	}
 
 }

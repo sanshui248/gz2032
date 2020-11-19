@@ -27,4 +27,8 @@ public interface BorrowService {
 	public void deleteById(Integer uid, Integer bid);
 
 	public void update(BorrowingDetails borrow);
+
+	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails);
+
+	public void saveBorrowRecords(int userId, int bookId);
 }

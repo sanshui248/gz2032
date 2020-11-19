@@ -66,4 +66,16 @@
 		valid_time=#{validTime}, borrow_stutas=#{borrowStutas}, return_time=#{returnTime}
 		where user_id = #{userId} and book_id=#{bookId}
 	</update>
+	
+	<select id="selectByBookIdAndUserId" parameterType="com.ibm.domain.BorrowingDetails" resultType="com.ibm.domain.BorrowingDetails">
+		select * from borrow 
+		<where>
+			<if test="userId!=null and userId!=''">
+				user_id = #{userId} 
+			</if>
+			<if test="bookId!=null and bookId!=''">
+				book_id = #{bookId} 
+			</if>
+		</where>
+	</select>
 </mapper>

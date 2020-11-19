@@ -30,7 +30,7 @@
 		SELECT user_id,book_id,book_name,user.name name,borrow_time,deadline,valid_time,borrow_stutas,return_time 
 		FROM user 
 		INNER JOIN (SELECT book.book_id book_id,book_name,borrow_time,deadline,valid_time,borrow_stutas,return_time FROM borrow  
-		INNER JOIN book ON book.book_id=borrow.book_id where user_id=#{userId}) book_borrow 
+		INNER JOIN book ON book.book_id=borrow.book_id where user_id=#{userId} and borrow_stutas=1) book_borrow 
 		ON user.user_id=#{userId}
 	</select>
 	

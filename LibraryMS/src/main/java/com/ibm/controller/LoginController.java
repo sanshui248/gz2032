@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ibm.domain.User;
 
+/**
+ * 
+ * @author 吕守淼
+ *
+ * @date   2020-11-19 8:28:39
+ * @Version 1.0
+ */
 @Controller
 public class LoginController {
 	
