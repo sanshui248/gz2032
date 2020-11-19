@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
+import com.ibm.domain.BorrowingDetails;
 import com.ibm.service.BookService;
+import com.ibm.service.BorrowService;
 
 @RestController
 @RequestMapping("/book")
@@ -19,6 +21,9 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private BorrowService borrowService;
 
 	/**
 	 * @Description 获取图书信息列表
@@ -77,10 +82,9 @@ public class BookController {
 	 * @return 更新好的图书信息类
 	 */
 	@RequestMapping("/borrows")
-	public Book setBookBorrows(Integer id) {
-		Book book = bookService.getById(id);
-		book.setBorrows(bookService.selectBorrowsByUserId(id));
-		return book;
+	public List<BorrowingDetails> setBookBorrows(Integer id) {
+		List<BorrowingDetails> bookBorrowingHistory = this.borrowService.selectBorrowsByUserId(id);
+		return bookBorrowingHistory;
 	}
 
 	/**

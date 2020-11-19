@@ -40,8 +40,7 @@ public class UserController {
 	BorrowService borrowService;
 
 	/**
-	 * 保存用户
-	 * 
+	 * @Description保存用户
 	 * @param user添加的用户
 	 * @return
 	 */
@@ -53,8 +52,7 @@ public class UserController {
 	}
 
 	/**
-	 * 更新用户
-	 * 
+	 * @Description更新用户
 	 * @param user更新的用户
 	 * @return
 	 */
@@ -66,8 +64,7 @@ public class UserController {
 	}
 
 	/**
-	 * 查询用户
-	 * 
+	 *@Description 查询用户
 	 * @param pageNum页面号
 	 * @param pageSize页面记录数
 	 * @return
@@ -82,7 +79,7 @@ public class UserController {
 	}
 	
 	/**
-	 *       模糊查询用户
+	 * @Description 模糊查询用户
 	 * @param vageName 模糊名
 	 * @return
 	 */
@@ -94,8 +91,7 @@ public class UserController {
 	}
 
 	/**
-	 * 用户详情
-	 * 
+	 * @Description用户详情
 	 * @param userId 用户id
 	 * @return
 	 */
@@ -107,8 +103,7 @@ public class UserController {
 	}
 
 	/**
-	 * 注销用户
-	 * 
+	 * @Description注销用户
 	 * @param userId 用户id
 	 * @return
 	 */
@@ -120,8 +115,7 @@ public class UserController {
 	}
 
 	/**
-	 * 借阅书籍
-	 * 
+	 * @Description借阅书籍
 	 * @param bookId  书籍id
 	 * @param session
 	 * @return
@@ -154,8 +148,7 @@ public class UserController {
 	}
 
 	/**
-	 * 归还书籍
-	 * 
+	 * @Description归还书籍
 	 * @param bookId  书籍id
 	 * @param session
 	 * @return

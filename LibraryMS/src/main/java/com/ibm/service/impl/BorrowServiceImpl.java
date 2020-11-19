@@ -114,5 +114,11 @@ public class BorrowServiceImpl implements BorrowService {
 		borrowingDetails.setValidTime(30);
 		this.borrowMapper.save(borrowingDetails);
 	}
+	
+	@Override
+	public List<BorrowingDetails> selectBorrowsByUserId(Integer id) {
+		List<BorrowingDetails> borrows = this.borrowMapper.selectBorrowsByBookId(id);
+		return borrows;
+	}
 
 }

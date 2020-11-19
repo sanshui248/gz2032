@@ -19,6 +19,14 @@
 			 <result column="book_name" property="bookName"/>
 		</association>
 	</resultMap>
+	
+	<select id="selectBorrowsByBookId" parameterType="Integer" resultMap="borrowingDetailsMap">
+		select borrow.*, user.name, book.book_name
+		from user, book, borrow
+		where user.user_id = borrow.user_id
+		and book.book_id = borrow.book_id
+		and book.book_id = #{id}
+	</select>
 
 	<select id="selectAll" resultMap="borrowingDetailsMap">
 		select borrow.*, user.name, book.book_name

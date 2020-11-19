@@ -31,4 +31,6 @@ public interface BorrowService {
 	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails);
 
 	public void saveBorrowRecords(int userId, int bookId);
+	
+	public List<BorrowingDetails> selectBorrowsByUserId(Integer id);
 }
