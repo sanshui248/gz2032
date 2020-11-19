@@ -91,7 +91,7 @@ public class BookController {
 	@RequestMapping("/add")
 	public String addBook(@RequestBody Book book) {
 		bookService.save(book);
-		return "redirect:/book/list";
+		return "保存成功";
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class BookController {
 	@RequestMapping("/update")
 	public String updateBook(@RequestBody Book book) {
 		bookService.update(book);
-		return "redirect:/book/list";
+		return "更新成功";
 	}
 
 	/**
@@ -113,6 +113,6 @@ public class BookController {
 	@RequestMapping("/delete")
 	public String deleteBook(Integer bookId) {
 		bookService.deleteById(bookId);
-		return "redirect:/book/list";
+		return "删除成功";
 	}
 }

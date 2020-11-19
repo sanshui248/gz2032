@@ -29,24 +29,37 @@
 	</resultMap>
 
 	<select id="selectAll" resultMap="bookMap">
-		select * from book
+		select * 
+		from book, country, theme, type
+		where book.country_id = country.country_id
+		and book.theme_id = theme.theme_id
+		and book.type_id = type.type_id
 	</select>
 	
 	<select id="getById" parameterType="Integer" resultMap="bookMap">
-		select * from book where book_id = #{id}
+		select * 
+		from book, country, theme, type
+		where book.country_id = country.country_id
+		and book.theme_id = theme.theme_id
+		and book.type_id = type.type_id
+		and book_id = #{id}
 	</select>
 	
 	<select id="selectByLabel" parameterType="com.ibm.domain.BookLabel" resultMap="bookMap">
-		select * from book
+		select * 
+		from book, country, theme, type
 		<where>
-			<if test="country != null and country != '' ">
-				country = #{country}
+			book.country_id = country.country_id
+			and book.theme_id = theme.theme_id
+			and book.type_id = type.type_id
+			<if test="countryId != null and countryId != 0 ">
+				and book.country_id = #{countryId}
 			</if>
-			<if test="type != null and type != '' ">
-				and type = #{type}
+			<if test="typeId != null and typeId != 0 ">
+				and book.type_id = #{typeId}
 			</if>
-			<if test="theme != null and theme != '' ">
-				and theme = #{theme}
+			<if test="themeId != null and themeId != 0 ">
+				and book.theme_id = #{themeId}
 			</if>
 			<if test="lengthRange != null and lengthRange != 0 ">
 				and pages between #{minPage} and #{maxPage}
@@ -61,9 +74,9 @@
 		and book.theme_id = theme.theme_id
 		and book.type_id = type.type_id 
 		and book_name like concat('%', #{key}, '%') 
-		or country like concat('%', #{key}, '%') 
-		or type like concat('%', #{key}, '%') 
-		or theme like concat('%', #{key}, '%') 
+		or country_name like concat('%', #{key}, '%') 
+		or type_name like concat('%', #{key}, '%') 
+		or theme_name like concat('%', #{key}, '%') 
 	</select>
 	
 	<select id="selectBorrowsByBookId" parameterType="Integer" resultType="com.ibm.domain.BorrowingDetails">
