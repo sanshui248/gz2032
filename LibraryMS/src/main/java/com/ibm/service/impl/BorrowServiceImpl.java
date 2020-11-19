@@ -103,9 +103,10 @@ public class BorrowServiceImpl implements BorrowService {
 		BorrowingDetails borrowingDetails = new BorrowingDetails();
 		User user = new User();
 		user.setUserId(userId);
-		borrowingDetails.setUser(user);
 		Book book = new Book();
 		book.setBookId(bookId);
+		
+		borrowingDetails.setUser(user);
 		borrowingDetails.setBook(book);
 		borrowingDetails.setBorrowStates(1);
 		borrowingDetails.setBorrowTime(new Date());

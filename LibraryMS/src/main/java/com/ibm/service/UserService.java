@@ -17,4 +17,6 @@ public interface UserService {
 	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int userId);
 
 	public void deleteUser(int userId);
+
+	public List<User> selectUserListByVagueName(String vageName);
 }

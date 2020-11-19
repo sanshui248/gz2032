@@ -55,4 +55,10 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public List<User> selectUserListByVagueName(String vageName) {
+		List<User> selectUserListByVagueName = this.userMapper.selectUserListByVagueName(vageName);
+		return selectUserListByVagueName;
+	}
+
 }

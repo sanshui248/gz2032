@@ -16,5 +16,7 @@ public interface UserMapper {
 	
 	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int id);//查询用户借阅详情
 
-	public void deleteUser(int userId);
+	public void deleteUser(int userId);//注销用户
+	
+	public List<User> selectUserListByVagueName(String vageName);//模糊查询用户
 }
