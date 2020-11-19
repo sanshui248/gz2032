@@ -4,10 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class BorrowingDetails {
-	private Integer userId; // 用户ID
-	private String name;// 用户姓名
-	private Integer bookId;// 图书ID
-	private String bookName;// 图书名称
+	private User user;
+	private Book book;
 	private Date borrowTime; // 借阅日期
 	private String borrowTimeStr; // 借阅日期--String类型
 	private Date deadline; // 截止日期
@@ -17,36 +15,32 @@ public class BorrowingDetails {
 	private int validTime; // 借阅有效期
 	private int borrowStates; // 借阅状态
 
-	public Integer getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public String getName() {
-		return name;
+	public Book getBook() {
+		return book;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
-	public Integer getBookId() {
-		return bookId;
+	public void setBorrowTimeStr(String borrowTimeStr) {
+		this.borrowTimeStr = borrowTimeStr;
 	}
 
-	public void setBookId(Integer bookId) {
-		this.bookId = bookId;
+	public void setDeadlineStr(String deadlineStr) {
+		this.deadlineStr = deadlineStr;
 	}
 
-	public String getBookName() {
-		return bookName;
-	}
-
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
+	public void setReturnTimeStr(String returnTimeStr) {
+		this.returnTimeStr = returnTimeStr;
 	}
 
 	public Date getBorrowTime() {
@@ -127,7 +121,5 @@ public class BorrowingDetails {
 	public void setBorrowStates(int borrowStates) {
 		this.borrowStates = borrowStates;
 	}
-
-	
 
 }

@@ -3,18 +3,17 @@ package com.ibm.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
 import com.ibm.service.BookService;
 
-@Controller
+@RestController
 @RequestMapping("/book")
 public class BookController {
 
@@ -26,7 +25,6 @@ public class BookController {
 	 * @param pageNum：页数 pageSize：页面记录数
 	 * @return 图书信息列表
 	 */
-	@ResponseBody
 	@RequestMapping("/list")
 	public PageInfo<Book> selectBookList(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
 			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
@@ -40,7 +38,6 @@ public class BookController {
 	 * @param 图书ID
 	 * @return 对应的图书信息
 	 */
-	@ResponseBody
 	@RequestMapping("/query")
 	public Book selectBookById(Integer bookId) {
 		return bookService.getById(bookId);
@@ -51,7 +48,6 @@ public class BookController {
 	 * @param bookLabel：图书关键字类 pageNum：页数 pageSize：页面记录数
 	 * @return 对应的图书信息列表
 	 */
-	@ResponseBody
 	@RequestMapping("/list/label")
 	public PageInfo<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel,
 			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
@@ -66,7 +62,6 @@ public class BookController {
 	 * @param 关键字
 	 * @return 对应的图书信息列表
 	 */
-	@ResponseBody
 	@RequestMapping("/list/key")
 	public PageInfo<Book> selectBookListByKey(String key,
 			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
@@ -81,7 +76,6 @@ public class BookController {
 	 * @param 图书ID
 	 * @return 更新好的图书信息类
 	 */
-	@ResponseBody
 	@RequestMapping("/borrows")
 	public Book setBookBorrows(Integer id) {
 		Book book = bookService.getById(id);

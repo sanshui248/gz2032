@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
+import com.ibm.domain.Book;
 import com.ibm.domain.BorrowingDetails;
+import com.ibm.domain.User;
 import com.ibm.mapper.BorrowMapper;
 import com.ibm.service.BorrowService;
 import com.ibm.utils.DateConversion;
@@ -99,8 +101,12 @@ public class BorrowServiceImpl implements BorrowService {
 	@Override
 	public void saveBorrowRecords(int userId, int bookId) {
 		BorrowingDetails borrowingDetails = new BorrowingDetails();
-		borrowingDetails.setUserId(userId);
-		borrowingDetails.setBookId(bookId);
+		User user = new User();
+		user.setUserId(userId);
+		borrowingDetails.setUser(user);
+		Book book = new Book();
+		book.setBookId(bookId);
+		borrowingDetails.setBook(book);
 		borrowingDetails.setBorrowStates(1);
 		borrowingDetails.setBorrowTime(new Date());
 		borrowingDetails.setDeadline(DateConversion.stepDay(new Date(), 30));
