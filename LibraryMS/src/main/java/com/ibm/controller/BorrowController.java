@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,8 +48,8 @@ public class BorrowController {
 	 * @return 对应的借阅记录列表
 	 */
 	@ResponseBody
-	@RequestMapping("/list/key")
-	public PageInfo<BorrowingDetails> selectBorrowListByKey(String key,
+	@RequestMapping("/list/{key}")
+	public PageInfo<BorrowingDetails> selectBorrowListByKey(@PathVariable("key") String key,
 			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
 			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
 		List<BorrowingDetails> borrows = borrowService.selectByKey(key, pageNum, pageSize);

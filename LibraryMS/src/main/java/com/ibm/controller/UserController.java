@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.PageInfo;
 import com.ibm.domain.Book;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
@@ -70,9 +71,23 @@ public class UserController {
 	 */
 	@RequestMapping("/selectUser")
 	@ResponseBody
-	public List<User> selectUserListByPage(int pageNum,int pageSize) {
+	public PageInfo<User> selectUserListByPage(int pageNum,int pageSize) {
 		List<User> selectUserListByPage = this.userService.selectUserListByPage(pageNum, pageSize);
-		return selectUserListByPage;
+		PageInfo<User> pageInfo = new PageInfo<User>();
+		pageInfo.setList(selectUserListByPage);
+		return pageInfo;
+	}
+	
+	/**
+	 *       模糊查询用户
+	 * @param vageName 模糊名
+	 * @return
+	 */
+	@RequestMapping("/selectUserByVagueName/{vageName}")
+	@ResponseBody
+	public List<User> selectUserListByVageName(@PathVariable("vageName")String vagueName) {
+		List<User> selectUserListByVageName = this.userService.selectUserListByVagueName(vagueName);
+		return selectUserListByVageName;
 	}
 	
 	/**
@@ -148,8 +163,12 @@ public class UserController {
 		Book book = this.bookService.getById(bookId);
 		
 		BorrowingDetails borrowingDetails2 = new BorrowingDetails();
-		borrowingDetails2.setBookId(bookId);
-		borrowingDetails2.setUserId(userId);
+		Book book2 = new Book();
+		book2.setBookId(bookId);
+		borrowingDetails2.setBook(book2);
+		User user2 = new User();
+		user2.setUserId(userId);
+		borrowingDetails2.setUser(user2);
 		BorrowingDetails borrowingDetails = this.borrowService.selectByBookIdAndUserId(borrowingDetails2);
 		
 		borrowingDetails.setBorrowStates(0);
@@ -161,6 +180,5 @@ public class UserController {
 		this.userService.updateUser(user);
 		return "归还成功";
 	} 
-	
 	
 }

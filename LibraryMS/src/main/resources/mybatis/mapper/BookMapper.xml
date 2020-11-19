@@ -25,15 +25,6 @@
 			 <id column="country_id" property="countryId"/>
 			 <result column="country_name" property="countryName"/>
 		</association>
-		<collection property="borrows" ofType="com.ibm.domain.BorrowingDetails">
-			<id column="user_id" property="userId"/>
-			<id column="book_id" property="bookId"/>
-			<result column="borrow_time" property="borrowTime"/>
-			<result column="deadline" property="deadline"/>
-			<result column="return_time" property="returnTime"/>
-			<result column="valid_time" property="validTime"/>
-			<result column="borrow_states" property="borrowStates"/>
-		</collection>
 	</resultMap>
 
 	<select id="selectAll" resultMap="bookMap">
@@ -79,8 +70,8 @@
 	</select>
 	
 	<insert id="save" parameterType="com.ibm.domain.Book">
-		insert into book(book_name,country,type,theme,pages,brief,on_number,on_time,off_number,off_time,surplus_number) 
-		values (#{bookName},#{country},#{type},#{theme},#{pages},#{brief},#{onNumber},#{onTime},#{offNumber},#{offTime},#{surplusNumber})
+		insert into book(book_name,country_id,type_id,theme_id,pages,brief,on_number,on_time,off_number,off_time,surplus_number) 
+		values (#{bookName},#{countryId},#{typeId},#{themeId},#{pages},#{brief},#{onNumber},#{onTime},#{offNumber},#{offTime},#{surplusNumber})
 	</insert>
 	
 	<delete id="deleteById" parameterType="Integer">
@@ -88,7 +79,7 @@
 	</delete>
 	
 	<update id="update" parameterType="com.ibm.domain.Book">
-		update book set book_name=#{bookName}, country=#{country}, type=#{type}, theme=#{theme}, pages=#{pages}, brief=#{brief}, 
+		update book set book_name=#{bookName}, country_id=#{countryId}, type_id=#{typeId}, theme_id=#{themeId}, pages=#{pages}, brief=#{brief}, 
 		on_number=#{onNumber}, on_time=#{onTime}, off_number=#{offNumber}, off_time=#{offTime}, surplus_number=#{surplusNumber}
 		where book_id=#{bookId}
 	</update>
