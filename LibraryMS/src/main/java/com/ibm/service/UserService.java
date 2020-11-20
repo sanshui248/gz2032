@@ -19,4 +19,6 @@ public interface UserService {
 	public void deleteUser(int userId);
 
 	public List<User> selectUserListByVagueName(String vageName);
+
+	public List<User> selectAllUser();
 }

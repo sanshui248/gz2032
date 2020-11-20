@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService{
 		List<User> selectUserByPage = this.userMapper.selectAllUser();
 		return selectUserByPage;
 	}
-
+	
 	@Override
 	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int userId) {
 		List<BorrowingDetails> borrowHistory = this.userMapper.selectBorrowingDetailsByUserId(userId);
@@ -59,6 +59,12 @@ public class UserServiceImpl implements UserService{
 	public List<User> selectUserListByVagueName(String vageName) {
 		List<User> selectUserListByVagueName = this.userMapper.selectUserListByVagueName(vageName);
 		return selectUserListByVagueName;
+	}
+
+	@Override
+	public List<User> selectAllUser() {
+		List<User> selectAllUser = this.userMapper.selectAllUser();
+		return selectAllUser;
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -79,10 +80,24 @@ public class UserController {
 	}
 	
 	/**
+	 *@Description 查询用户
+	 * @return
+	 */
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@RequestMapping("/selectAllUser")
+	@ResponseBody
+	public List<User> selectAllUser() {
+		List<User> allUser = this.userService.selectAllUser();
+		return allUser;
+	}
+	
+	
+	/**
 	 * @Description 模糊查询用户
 	 * @param vageName 模糊名
 	 * @return
 	 */
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/selectUserByVagueName/{vageName}")
 	@ResponseBody
 	public List<User> selectUserListByVageName(@PathVariable("vageName")String vagueName) {
@@ -107,6 +122,7 @@ public class UserController {
 	 * @param userId 用户id
 	 * @return
 	 */
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/deleteUser/{userId}")
 	@ResponseBody
 	public String deleteUser(@PathVariable("userId") int userId) {

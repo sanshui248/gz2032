@@ -8,6 +8,7 @@ public class User {
 	private int userId; // 用户id
 	private String name; // 姓名
 	private int sex;// 性别
+	private String sexStr;
 	private int age;// 年龄
 	private String email;// 邮件
 	private int identity;//用户身份
@@ -38,6 +39,12 @@ public class User {
 	public int getUserId() {
 		return userId;
 	}
+	public String getSexStr() {
+		return sexStr;
+	}
+	public void setSexStr(String sexStr) {
+		this.sexStr = sexStr;
+	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
@@ -52,6 +59,11 @@ public class User {
 	}
 	public void setSex(int sex) {
 		this.sex = sex;
+		if (sex==0) {
+			sexStr="女";
+		}else {
+			sexStr="男";
+		}
 	}
 	public int getAge() {
 		return age;
