@@ -81,7 +81,7 @@
 	
 	<insert id="save" parameterType="com.ibm.domain.Book">
 		insert into book(book_name,country_id,type_id,theme_id,pages,brief,on_number,on_time,off_number,off_time,surplus_number) 
-		values (#{bookName},#{countryId},#{typeId},#{themeId},#{pages},#{brief},#{onNumber},#{onTime},#{offNumber},#{offTime},#{surplusNumber})
+		values (#{bookName},#{country.countryId},#{type.typeId},#{theme.themeId},#{pages},#{brief},#{onNumber},#{onTime},#{offNumber},#{offTime},#{surplusNumber})
 	</insert>
 	
 	<delete id="deleteById" parameterType="Integer">

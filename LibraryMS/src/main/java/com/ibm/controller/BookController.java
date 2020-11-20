@@ -1,8 +1,10 @@
 package com.ibm.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +23,7 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
-	
+
 	@Autowired
 	private BorrowService borrowService;
 
@@ -30,6 +32,7 @@ public class BookController {
 	 * @param pageNum：页数 pageSize：页面记录数
 	 * @return 图书信息列表
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/list")
 	public PageInfo<Book> selectBookList(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
 			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
@@ -94,6 +97,7 @@ public class BookController {
 	 */
 	@RequestMapping("/add")
 	public String addBook(@RequestBody Book book) {
+		book.setOnTime(new Date());
 		bookService.save(book);
 		return "保存成功";
 	}

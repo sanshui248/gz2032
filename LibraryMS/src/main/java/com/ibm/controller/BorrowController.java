@@ -3,19 +3,18 @@ package com.ibm.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.service.BorrowService;
 
-@Controller
+@RestController
 @RequestMapping("/borrow")
 public class BorrowController {
 
@@ -28,7 +27,6 @@ public class BorrowController {
 	 * @return 借阅记录列表
 	 */
 
-	@ResponseBody
 	@CrossOrigin(origins = "*")
 	@RequestMapping("/list")
 	public PageInfo<BorrowingDetails> selectBorrowList(
@@ -50,7 +48,6 @@ public class BorrowController {
 	 * @param 关键字
 	 * @return 对应的借阅记录列表
 	 */
-	@ResponseBody
 	@RequestMapping("/list/{key}")
 	public PageInfo<BorrowingDetails> selectBorrowListByKey(@PathVariable("key") String key,
 			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
@@ -68,7 +65,7 @@ public class BorrowController {
 	@RequestMapping("/add")
 	public String addBorrow(@RequestBody BorrowingDetails borrow) {
 		borrowService.save(borrow);
-		return "redirect:/borrow/list";
+		return "添加成功";
 	}
 
 	/**
@@ -79,7 +76,7 @@ public class BorrowController {
 	@RequestMapping("/update")
 	public String updateBorrow(@RequestBody BorrowingDetails borrow) {
 		borrowService.update(borrow);
-		return "redirect:/borrow/list";
+		return "更新成功";
 	}
 
 	/**
@@ -90,7 +87,7 @@ public class BorrowController {
 	@RequestMapping("/delete")
 	public String deleteBorrow(Integer userId, Integer bookId) {
 		borrowService.deleteById(userId, bookId);
-		return "redirect:/borrow/list";
+		return "删除成功";
 	}
 
 }
