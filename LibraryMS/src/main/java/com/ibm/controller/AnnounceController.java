@@ -1,7 +1,10 @@
 package com.ibm.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +25,7 @@ public class AnnounceController {
 	 * @param
 	 * @return 公告信息
 	 */
+	@CrossOrigin(origins = "*")
 	@ResponseBody
 	@RequestMapping("/list")
 	public Announce getAnnounce() {
@@ -45,9 +49,10 @@ public class AnnounceController {
 	 * @param
 	 * @return 图书信息列表
 	 */
-	
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/update")
 	public String updateAnounce(@RequestBody Announce announce) {
+		announce.setAnnounceTime(new Date());
 		announceService.updateAnnounce(announce);
 		return "redirect:/announce/list";
 	}
