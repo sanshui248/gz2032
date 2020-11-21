@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -45,9 +46,11 @@ public class UserController {
 	 * @param user添加的用户
 	 * @return
 	 */
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/saveUser")
 	@ResponseBody
-	public String saveUser(User user) {
+	public String saveUser(@RequestBody User user) {
+		System.out.println(user.getName());
 		this.userService.saveUser(user);
 		return "插入成功";
 	}
