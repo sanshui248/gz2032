@@ -6,9 +6,11 @@ import com.ibm.domain.BorrowingDetails;
 
 public interface BorrowService {
 
-	public List<BorrowingDetails> selectAll(Integer pageNum, Integer pageSize);
+//	public List<BorrowingDetails> selectAll(Integer pageNum, Integer pageSize);
+	public List<BorrowingDetails> selectAll();
 
-	public List<BorrowingDetails> selectByKey(String key, Integer pageNum, Integer pageSize);
+//	public List<BorrowingDetails> selectByKey(String key, Integer pageNum, Integer pageSize);
+	public List<BorrowingDetails> selectByKey(String key);
 
 	public Integer getBorrowCountByDay();
 
@@ -31,6 +33,6 @@ public interface BorrowService {
 	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails);
 
 	public void saveBorrowRecords(int userId, int bookId);
-	
+
 	public List<BorrowingDetails> selectBorrowsByUserId(Integer id);
 }

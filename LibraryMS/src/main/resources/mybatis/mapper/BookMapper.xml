@@ -73,10 +73,10 @@
 		where book.country_id = country.country_id
 		and book.theme_id = theme.theme_id
 		and book.type_id = type.type_id 
-		and book_name like concat('%', #{key}, '%') 
+		and (book_name like concat('%', #{key}, '%') 
 		or country_name like concat('%', #{key}, '%') 
 		or type_name like concat('%', #{key}, '%') 
-		or theme_name like concat('%', #{key}, '%') 
+		or theme_name like concat('%', #{key}, '%') )
 	</select>
 	
 	<insert id="save" parameterType="com.ibm.domain.Book">

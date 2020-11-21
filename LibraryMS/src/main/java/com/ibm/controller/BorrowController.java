@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.service.BorrowService;
 
@@ -23,25 +21,22 @@ public class BorrowController {
 
 	/**
 	 * @Description 获取借阅记录列表
-	 * @param pageNum：页数 pageSize：页面记录数
+	 * @param
 	 * @return 借阅记录列表
 	 */
-
 	@CrossOrigin(origins = "*")
 	@RequestMapping("/list")
-	public PageInfo<BorrowingDetails> selectBorrowList(
-			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-		List<BorrowingDetails> borrows = borrowService.selectAll(pageNum, pageSize);
-		PageInfo<BorrowingDetails> pageInfo = new PageInfo<BorrowingDetails>(borrows);
-		System.out.println("Bo-day:" + borrowService.getBorrowCountByDay());
-		System.out.println("Re-day:" + borrowService.getReturnCountByDay());
-		System.out.println("Bo-mon:" + borrowService.getBorrowCountByMon());
-		System.out.println("Re-mon:" + borrowService.getReturnCountByMon());
-		System.out.println("Bo-year:" + borrowService.getBorrowCountByYear());
-		System.out.println("Re-year:" + borrowService.getReturnCountByYear());
-		return pageInfo;
+	public List<BorrowingDetails> selectBorrowList() {
+		List<BorrowingDetails> borrows = borrowService.selectAll();
+		return borrows;
 	}
+//	public PageInfo<BorrowingDetails> selectBorrowList(
+//			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
+//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
+//		List<BorrowingDetails> borrows = borrowService.selectAll(pageNum, pageSize);
+//		PageInfo<BorrowingDetails> pageInfo = new PageInfo<BorrowingDetails>(borrows);
+//		return pageInfo;
+//	}
 
 	/**
 	 * @Description 根据关键字模糊查询对应借阅记录
@@ -49,12 +44,33 @@ public class BorrowController {
 	 * @return 对应的借阅记录列表
 	 */
 	@RequestMapping("/list/{key}")
-	public PageInfo<BorrowingDetails> selectBorrowListByKey(@PathVariable("key") String key,
-			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-		List<BorrowingDetails> borrows = borrowService.selectByKey(key, pageNum, pageSize);
-		PageInfo<BorrowingDetails> pageInfo = new PageInfo<BorrowingDetails>(borrows);
-		return pageInfo;
+	public List<BorrowingDetails> selectBorrowListByKey(@PathVariable("key") String key) {
+		List<BorrowingDetails> borrows = borrowService.selectByKey(key);
+		return borrows;
+	}
+//	public PageInfo<BorrowingDetails> selectBorrowListByKey(@PathVariable("key") String key,
+//			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
+//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
+//		List<BorrowingDetails> borrows = borrowService.selectByKey(key, pageNum, pageSize);
+//		PageInfo<BorrowingDetails> pageInfo = new PageInfo<BorrowingDetails>(borrows);
+//		return pageInfo;
+//	}
+
+	/**
+	 * @Description 获取借阅统计数据
+	 * @return 借阅统计数据
+	 */
+	@CrossOrigin(origins = "*")
+	@RequestMapping("/statistics")
+	public int[] selectBorrowStatist() {
+		int st[] = new int[6];
+		st[0] = borrowService.getBorrowCountByDay();
+		st[1] = borrowService.getReturnCountByDay();
+		st[2] = borrowService.getBorrowCountByMon();
+		st[3] = borrowService.getReturnCountByMon();
+		st[4] = borrowService.getBorrowCountByYear();
+		st[5] = borrowService.getReturnCountByYear();
+		return st;
 	}
 
 	/**

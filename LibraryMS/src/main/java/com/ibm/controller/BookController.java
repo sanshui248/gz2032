@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
 import com.ibm.domain.BorrowingDetails;
@@ -34,12 +32,16 @@ public class BookController {
 	 */
 	@CrossOrigin(origins = "*")
 	@RequestMapping("/list")
-	public PageInfo<Book> selectBookList(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-		List<Book> books = bookService.selectAll(pageNum, pageSize);
-		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
-		return pageInfo;
+	public List<Book> selectBookList() {
+		List<Book> books = bookService.selectAll();
+		return books;
 	}
+//	public PageInfo<Book> selectBookList(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
+//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
+//		List<Book> books = bookService.selectAll(pageNum, pageSize);
+//		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+//		return pageInfo;
+//	}
 
 	/**
 	 * @Description 根据ID获取对应图书信息
@@ -56,28 +58,38 @@ public class BookController {
 	 * @param bookLabel：图书关键字类 pageNum：页数 pageSize：页面记录数
 	 * @return 对应的图书信息列表
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/list/label")
-	public PageInfo<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel,
-			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-		List<Book> books = bookService.selectByLabel(bookLabel, pageNum, pageSize);
-		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
-		return pageInfo;
+	public List<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel) {
+		List<Book> books = bookService.selectByLabel(bookLabel);
+		return books;
 	}
+//	public PageInfo<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel,
+//			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
+//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
+//		List<Book> books = bookService.selectByLabel(bookLabel, pageNum, pageSize);
+//		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+//		return pageInfo;
+//	}
 
 	/**
 	 * @Description 根据关键字模糊查询对应图书信息
 	 * @param 关键字
 	 * @return 对应的图书信息列表
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/list/key")
-	public PageInfo<Book> selectBookListByKey(String key,
-			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-		List<Book> books = bookService.selectByKey(key, pageNum, pageSize);
-		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
-		return pageInfo;
+	public List<Book> selectBookListByKey(String key) {
+		List<Book> books = bookService.selectByKey(key);
+		return books;
 	}
+//	public PageInfo<Book> selectBookListByKey(String key,
+//			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
+//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
+//		List<Book> books = bookService.selectByKey(key, pageNum, pageSize);
+//		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
+//		return pageInfo;
+//	}
 
 	/**
 	 * @Description 根据图书ID设置图书借阅记录列表

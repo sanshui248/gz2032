@@ -6,17 +6,17 @@ public class BookLabel {
 	private int countryId; // 国家id
 	private int typeId; // 类型id
 	private int themeId; // 主题id
-	private Integer lengthRange; // 篇幅区间
+	private int lengthRange; // 篇幅区间
 	private Integer minPage; // 最小篇幅范围
 	private Integer maxPage; // 最大篇幅范围
-	
-	public Integer getLengthRange() {
+
+	public int getLengthRange() {
 		return lengthRange;
 	}
 
 	// 根据篇幅区间设置最小和最大最小篇幅范围
 	// 1:(1--500) 2:(501--1000) 3:(1001--1500) 4:(>1501)
-	public void setLengthRange(Integer lengthRange) {
+	public void setLengthRange(int lengthRange) {
 		this.lengthRange = lengthRange;
 		switch (lengthRange) {
 		case 1:
@@ -79,7 +79,5 @@ public class BookLabel {
 	public void setThemeId(int themeId) {
 		this.themeId = themeId;
 	}
-
-	
 
 }

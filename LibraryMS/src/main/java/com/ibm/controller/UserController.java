@@ -64,20 +64,31 @@ public class UserController {
 	}
 
 	/**
-	 *@Description 查询用户
+	 * @Description 查询用户
 	 * @param pageNum页面号
 	 * @param pageSize页面记录数
 	 * @return
 	 */
-	@RequestMapping("/selectUser")
+	@RequestMapping("/selectUserPage")
 	@ResponseBody
-	public PageInfo<User> selectUserListByPage(int pageNum,int pageSize) {
+	public PageInfo<User> selectUserListByPage(int pageNum, int pageSize) {
 		List<User> selectUserListByPage = this.userService.selectUserListByPage(pageNum, pageSize);
 		PageInfo<User> pageInfo = new PageInfo<User>();
 		pageInfo.setList(selectUserListByPage);
 		return pageInfo;
 	}
-	
+
+	/**
+	 * @Description 查询用户
+	 * @return
+	 */
+	@RequestMapping("/selectUser")
+	@ResponseBody
+	public List<User> selectUserListByPage() {
+		List<User> users = this.userService.selectUser();
+		return users;
+	}
+
 	/**
 	 * @Description 模糊查询用户
 	 * @param vageName 模糊名
@@ -85,7 +96,7 @@ public class UserController {
 	 */
 	@RequestMapping("/selectUserByVagueName/{vageName}")
 	@ResponseBody
-	public List<User> selectUserListByVageName(@PathVariable("vageName")String vagueName) {
+	public List<User> selectUserListByVageName(@PathVariable("vageName") String vagueName) {
 		List<User> selectUserListByVageName = this.userService.selectUserListByVagueName(vagueName);
 		return selectUserListByVageName;
 	}
@@ -179,7 +190,6 @@ public class UserController {
 		user.setBooksNumber(user.getBooksNumber() - 1);
 		this.userService.updateUser(user);
 		return "归还成功";
-	} 
-	
+	}
 
 }

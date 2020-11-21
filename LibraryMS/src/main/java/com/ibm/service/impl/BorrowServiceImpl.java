@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.PageHelper;
 import com.ibm.domain.Book;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
@@ -21,19 +20,19 @@ public class BorrowServiceImpl implements BorrowService {
 	@Autowired
 	private BorrowMapper borrowMapper;
 
-	@Override
-	public List<BorrowingDetails> selectAll(Integer pageNum, Integer pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
-		List<BorrowingDetails> borrows = borrowMapper.selectAll();
-		return borrows;
-	}
+//	@Override
+//	public List<BorrowingDetails> selectAll(Integer pageNum, Integer pageSize) {
+//		PageHelper.startPage(pageNum, pageSize);
+//		List<BorrowingDetails> borrows = borrowMapper.selectAll();
+//		return borrows;
+//	}
 
-	@Override
-	public List<BorrowingDetails> selectByKey(String key, Integer pageNum, Integer pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
-		List<BorrowingDetails> borrows = borrowMapper.selectByKey(key);
-		return borrows;
-	}
+//	@Override
+//	public List<BorrowingDetails> selectByKey(String key, Integer pageNum, Integer pageSize) {
+//		PageHelper.startPage(pageNum, pageSize);
+//		List<BorrowingDetails> borrows = borrowMapper.selectByKey(key);
+//		return borrows;
+//	}
 
 	@Override
 	public Integer getBorrowCountByDay() {
@@ -105,7 +104,7 @@ public class BorrowServiceImpl implements BorrowService {
 		user.setUserId(userId);
 		Book book = new Book();
 		book.setBookId(bookId);
-		
+
 		borrowingDetails.setUser(user);
 		borrowingDetails.setBook(book);
 		borrowingDetails.setBorrowStates(1);
@@ -114,11 +113,21 @@ public class BorrowServiceImpl implements BorrowService {
 		borrowingDetails.setValidTime(30);
 		this.borrowMapper.save(borrowingDetails);
 	}
-	
+
 	@Override
 	public List<BorrowingDetails> selectBorrowsByUserId(Integer id) {
 		List<BorrowingDetails> borrows = this.borrowMapper.selectBorrowsByBookId(id);
 		return borrows;
+	}
+
+	@Override
+	public List<BorrowingDetails> selectAll() {
+		return borrowMapper.selectAll();
+	}
+
+	@Override
+	public List<BorrowingDetails> selectByKey(String key) {
+		return borrowMapper.selectByKey(key);
 	}
 
 }

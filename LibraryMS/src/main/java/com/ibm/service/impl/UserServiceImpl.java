@@ -12,25 +12,25 @@ import com.ibm.mapper.UserMapper;
 import com.ibm.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService{
-	
+public class UserServiceImpl implements UserService {
+
 	@Autowired
 	UserMapper userMapper;
 
 	@Override
 	public User getUserByName(String name) {
 		User user = this.userMapper.getUserByName(name);
-		if (user!=null) {
+		if (user != null) {
 			return user;
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void saveUser(User user) {
 		this.userMapper.saveUser(user);
 	}
-	
+
 	@Override
 	public void updateUser(User user) {
 		this.userMapper.updateUser(user);
@@ -52,13 +52,18 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void deleteUser(int userId) {
 		this.userMapper.deleteUser(userId);
-		
+
 	}
 
 	@Override
 	public List<User> selectUserListByVagueName(String vageName) {
 		List<User> selectUserListByVagueName = this.userMapper.selectUserListByVagueName(vageName);
 		return selectUserListByVagueName;
+	}
+
+	@Override
+	public List<User> selectUser() {
+		return this.userMapper.selectAllUser();
 	}
 
 }
