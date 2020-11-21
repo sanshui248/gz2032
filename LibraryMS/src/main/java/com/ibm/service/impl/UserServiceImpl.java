@@ -61,9 +61,9 @@ public class UserServiceImpl implements UserService {
 		return selectUserListByVagueName;
 	}
 
-	@Override
-	public List<User> selectUser() {
-		return this.userMapper.selectAllUser();
+	public List<User> selectAllUser() {
+		List<User> selectAllUser = this.userMapper.selectAllUser();
+		return selectAllUser;
 	}
 
 }

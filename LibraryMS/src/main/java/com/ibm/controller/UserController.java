@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -44,9 +46,11 @@ public class UserController {
 	 * @param user添加的用户
 	 * @return
 	 */
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/saveUser")
 	@ResponseBody
-	public String saveUser(User user) {
+	public String saveUser(@RequestBody User user) {
+		System.out.println(user.getName());
 		this.userService.saveUser(user);
 		return "插入成功";
 	}
@@ -82,11 +86,12 @@ public class UserController {
 	 * @Description 查询用户
 	 * @return
 	 */
-	@RequestMapping("/selectUser")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
+	@RequestMapping("/selectAllUser")
 	@ResponseBody
-	public List<User> selectUserListByPage() {
-		List<User> users = this.userService.selectUser();
-		return users;
+	public List<User> selectAllUser() {
+		List<User> allUser = this.userService.selectAllUser();
+		return allUser;
 	}
 
 	/**
@@ -94,6 +99,7 @@ public class UserController {
 	 * @param vageName 模糊名
 	 * @return
 	 */
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/selectUserByVagueName/{vageName}")
 	@ResponseBody
 	public List<User> selectUserListByVageName(@PathVariable("vageName") String vagueName) {
@@ -118,6 +124,7 @@ public class UserController {
 	 * @param userId 用户id
 	 * @return
 	 */
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/deleteUser/{userId}")
 	@ResponseBody
 	public String deleteUser(@PathVariable("userId") int userId) {
