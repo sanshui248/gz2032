@@ -261,6 +261,7 @@ public class UserController {
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/export")
 	public void exportUser(HttpServletResponse response) throws IOException {
+		@SuppressWarnings("resource")
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFSheet sheet = workbook.createSheet("用户表");
 

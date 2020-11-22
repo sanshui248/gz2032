@@ -22,7 +22,7 @@ public class ScheduleTask {
 	/**
 	 * @Description 定时任务，每天0点进行一次修改借阅剩余有效期
 	 */
-	@Scheduled(cron = "0 20 0 * * ?")    
+	@Scheduled(cron = "59 2 0 * * ?")    
 	public void updateValidTime() {
 		System.out.println("111111111");
 		Executors.newSingleThreadExecutor().execute(() -> {
