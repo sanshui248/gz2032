@@ -67,7 +67,23 @@ public class Book {
 		return pages;
 	}
 
-	public void setPages(Integer pages) {
+	public void setPages(int pages) {
+		switch (pages) {
+		case 1:
+			this.pages = 250;
+			break;
+		case 2:
+			this.pages = 750;
+			break;
+		case 3:
+			this.pages = 1250;
+			break;
+		case 4:
+			this.pages = 1750;
+			break;
+		default:
+			break;
+		}
 		this.pages = pages;
 	}
 
