@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.domain.Announce;
 import com.ibm.service.AnnounceService;
 
-@Controller
+@RestController
 @RequestMapping("/announce")
 public class AnnounceController {
 	
@@ -26,7 +27,6 @@ public class AnnounceController {
 	 * @return 公告信息
 	 */
 	@CrossOrigin(origins = "*")
-	@ResponseBody
 	@RequestMapping("/list")
 	public Announce getAnnounce() {
 		return announceService.getAnnounce();
@@ -38,10 +38,11 @@ public class AnnounceController {
 	 * @return 
 	 * @return 图书信息列表
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/delete")
 	public String deleteAnnounce() {
 		announceService.deleteAnnounce();
-		return "redirect:/announce/list";
+		return "删除成功";
 	}
 	
 	/**
@@ -54,7 +55,7 @@ public class AnnounceController {
 	public String updateAnounce(@RequestBody Announce announce) {
 		announce.setAnnounceTime(new Date());
 		announceService.updateAnnounce(announce);
-		return "redirect:/announce/list";
+		return "修改成功";
 	}
 	
 	

@@ -77,8 +77,8 @@
 	</select>
 	
 	<insert id="save" parameterType="com.ibm.domain.BorrowingDetails">
-		insert into borrow(user_id,book_id,borrow_time,deadline,valid_time,borrow_stutas,return_time) 
-		values (#{userId},#{bookId},#{borrowTime},#{deadline},#{validTime},#{borrowStutas},#{returnTime})
+		insert into borrow(user_id,book_id,borrow_time,deadline,valid_time,borrow_states,return_time) 
+		values (#{borrow.user.userId},#{borrow.book.bookId},#{borrow.borrowTime},#{borrow.deadline},#{borrow.validTime},#{borrow.borrowStates},#{borrow.returnTime})
 	</insert>
 	
 	<delete id="deleteById">
@@ -87,19 +87,24 @@
 	
 	<update id="update" parameterType="com.ibm.domain.BorrowingDetails">
 		update borrow set 
-		user_id=#{userId}, book_id=#{bookId}, borrow_time=#{borrowTime}, deadline=#{deadline}, 
-		valid_time=#{validTime}, borrow_stutas=#{borrowStutas}, return_time=#{returnTime}
-		where user_id = #{userId} and book_id=#{bookId}
+		user_id=#{borrow.user.userId}, book_id=#{borrow.book.bookId}, borrow_time=#{borrow.borrowTime}, deadline=#{borrow.deadline},
+		valid_time=#{borrow.validTime}, borrow_states=#{borrow.borrowStates}, return_time=#{borrow.returnTime} 
+		where user_id = #{borrow.user.userId} and book_id=#{borrow.book.bookId}
+	</update>
+	
+	<update id="updateStatesById">
+		update borrow set borrow_states = 0, return_time = #{reTime}
+		where user_id = #{uid} and book_id = #{bid}
 	</update>
 	
 	<select id="selectByBookIdAndUserId" parameterType="com.ibm.domain.BorrowingDetails" resultMap="borrowingDetailsMap">
 		select * from borrow 
 		<where>
 			<if test="userId!=null and userId!=''">
-				user_id = #{userId} 
+				user_id = #{borrow.user.userId} 
 			</if>
 			<if test="bookId!=null and bookId!=''">
-				book_id = #{bookId} 
+				and book_id = #{borrow.book.bookId} 
 			</if>
 		</where>
 	</select>

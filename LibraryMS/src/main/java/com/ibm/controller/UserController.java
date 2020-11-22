@@ -71,7 +71,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/updateUser")
-	public String updateUser(User user) {
+	public String updateUser(@RequestBody User user) {
 		this.userService.updateUser(user);
 		return "更新成功";
 	}
@@ -148,6 +148,7 @@ public class UserController {
 		int userId = user.getUserId();
 //		User user = this.userService.getUserByName("赵");
 //		int userId = user.getUserId();
+		System.out.println(userId);
 		int borrowNum = user.getBooksNumber();
 
 		if (borrowNum == 3) {
@@ -181,18 +182,21 @@ public class UserController {
 //		int userId = user.getUserId();
 		Book book = this.bookService.getById(bookId);
 
-		BorrowingDetails borrowingDetails2 = new BorrowingDetails();
-		Book book2 = new Book();
-		book2.setBookId(bookId);
-		borrowingDetails2.setBook(book2);
-		User user2 = new User();
-		user2.setUserId(userId);
-		borrowingDetails2.setUser(user2);
-		BorrowingDetails borrowingDetails = this.borrowService.selectByBookIdAndUserId(borrowingDetails2);
+//		BorrowingDetails borrowingDetails2 = new BorrowingDetails();
+//		Book book2 = new Book();
+//		book2.setBookId(bookId);
+//		borrowingDetails2.setBook(book2);
+//		User user2 = new User();
+//		user2.setUserId(userId);
+//		borrowingDetails2.setUser(user2);
+//		BorrowingDetails borrowingDetails = this.borrowService.selectByBookIdAndUserId(borrowingDetails2);
 
-		borrowingDetails.setBorrowStates(0);
-		borrowingDetails.setReturnTime(new Date());
-		this.borrowService.update(borrowingDetails);
+//		borrowingDetails.setBorrowStates(0);
+//		borrowingDetails.setReturnTime(new Date());
+//		this.borrowService.update(borrowingDetails);
+		
+		this.borrowService.updateStatesById(new Date(), userId, bookId);
+		
 		book.setSurplusNumber(book.getSurplusNumber() + 1);
 		this.bookService.update(book);
 		user.setBooksNumber(user.getBooksNumber() - 1);

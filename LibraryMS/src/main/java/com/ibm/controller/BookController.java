@@ -121,6 +121,11 @@ public class BookController {
 	 */
 	@RequestMapping("/update")
 	public String updateBook(@RequestBody Book book) {
+		if(book.getOffNumber() != 0) {
+			book.setOffTime(new Date());
+		}else {
+			book.setOffTime(null);
+		}
 		bookService.update(book);
 		return "更新成功";
 	}

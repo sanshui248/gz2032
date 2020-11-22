@@ -1,5 +1,6 @@
 package com.ibm.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.ibm.domain.BorrowingDetails;
@@ -29,6 +30,8 @@ public interface BorrowService {
 	public void deleteById(Integer uid, Integer bid);
 
 	public void update(BorrowingDetails borrow);
+	
+	public void updateStatesById(Date reTime, Integer uid, Integer bid);
 
 	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails);
 

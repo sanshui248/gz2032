@@ -1,6 +1,9 @@
 package com.ibm.mapper;
 
+import java.util.Date;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.ibm.domain.BorrowingDetails;
 
@@ -22,15 +25,19 @@ public interface BorrowMapper {
 	public Integer getCountByYear(Integer boOrRu, String year);
 
 	// 保存借阅记录
-	public void save(BorrowingDetails borrow);
+	public void save(@Param("borrow") BorrowingDetails borrow);
 
 	// 根据ID删除借阅记录
 	public void deleteById(Integer uid, Integer bid);
 
 	// 更新借阅记录
-	public void update(BorrowingDetails borrow);
+	public void update(@Param("borrow") BorrowingDetails borrow);
+	
+	//根据ID修改借阅状态
+	public void updateStatesById(Date reTime, Integer uid, Integer bid);
+	
 	//查找借阅内容
-	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails);
+	public BorrowingDetails selectByBookIdAndUserId(@Param("borrow") BorrowingDetails borrow);
 	
 	// 根据图书ID查询借阅记录
 	public List<BorrowingDetails> selectBorrowsByBookId(Integer id);

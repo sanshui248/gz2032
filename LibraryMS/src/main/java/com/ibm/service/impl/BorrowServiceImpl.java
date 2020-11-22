@@ -92,6 +92,11 @@ public class BorrowServiceImpl implements BorrowService {
 	}
 
 	@Override
+	public void updateStatesById(Date reTime, Integer uid, Integer bid) {
+		borrowMapper.updateStatesById(reTime, uid, bid);
+	}
+
+	@Override
 	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails) {
 		BorrowingDetails borrow = this.borrowMapper.selectByBookIdAndUserId(borrowingDetails);
 		return borrow;
