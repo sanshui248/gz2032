@@ -21,4 +21,6 @@ public interface UserService {
 	public List<User> selectUserListByVagueName(String vageName);
 
 	public List<User> selectAllUser();
+
+	public User getUserById(int id);
 }

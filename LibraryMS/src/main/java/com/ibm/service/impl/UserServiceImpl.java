@@ -2,6 +2,7 @@ package com.ibm.service.impl;
 
 import java.util.List;
 
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +29,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUser(User user) {
+		Md5Hash md5Hash = new Md5Hash(user.getPassword());
+		user.setPassword(md5Hash.toString());
 		this.userMapper.saveUser(user);
 	}
 
 	@Override
 	public void updateUser(User user) {
+		Md5Hash md5Hash = new Md5Hash(user.getPassword());
+		user.setPassword(md5Hash.toString());
 		this.userMapper.updateUser(user);
 	}
 
@@ -64,6 +69,12 @@ public class UserServiceImpl implements UserService {
 	public List<User> selectAllUser() {
 		List<User> selectAllUser = this.userMapper.selectAllUser();
 		return selectAllUser;
+	}
+
+	@Override
+	public User getUserById(int id) {
+		User user = this.userMapper.getUserById(id);
+		return user;
 	}
 
 }

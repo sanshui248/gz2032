@@ -19,4 +19,6 @@ public interface UserMapper {
 	public void deleteUser(int userId);//注销用户
 	
 	public List<User> selectUserListByVagueName(String vageName);//模糊查询用户
+	
+	public User getUserById(int id);//根据用户id获取用户信息
 }

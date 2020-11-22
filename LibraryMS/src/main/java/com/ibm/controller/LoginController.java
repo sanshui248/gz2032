@@ -1,16 +1,14 @@
 package com.ibm.controller;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.AuthorizationException;
-import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Controller;
+import javax.servlet.http.HttpSession;
+
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ibm.domain.User;
+import com.ibm.service.UserService;
 
 /**
  * 
@@ -19,52 +17,29 @@ import com.ibm.domain.User;
  * @date   2020-11-19 8:28:39
  * @Version 1.0
  */
-@Controller
+@RestController
 public class LoginController {
 	
-	@RequestMapping("/toLogin")
-	public String tologin() {
-	//System.out.println("123");
-		return "login";
-	}
-	@RequestMapping("/toIndex")
-	public String toIndex() {
-		System.out.println("index");
-		return "index";
-	}
-	@RequestMapping("/toError")
-	public String toError() {
-		return "error";
-	}
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping("/login")
-	@ResponseBody
-	public String login(User user) {
-		//用户认证信息
-		System.out.println("login");
-		Subject subject = SecurityUtils.getSubject();
-		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(user.getName(),user.getPassword());
-		try {
-			//进行验证
-			subject.login(usernamePasswordToken);
-			
-		} catch (UnknownAccountException e) {
-           // log.error("用户名不存在！", e);
-            return "用户名不存在！";
-        } catch (AuthenticationException e) {
-            return "账号或密码错误！";
-        } catch (AuthorizationException e) {
-            return "没有权限";
-        }
-        return "login success";
-		//return "/login";
-        
+	public User login(int id,String password,HttpSession session) {
+		//根据用户id获取用户
+		User user = this.userService.getUserById(id);
+		if (user!=null) {
+			Md5Hash md5Hash = new Md5Hash(password,"salt");
+			if (md5Hash.toString().equals(user.getPassword())) {
+				user.setPassword(password);
+			}
+			session.setAttribute("user", user);
+		}
+        return user;
         
 	}
 	
-	@RequestMapping("/tes")
-    @ResponseBody
-    public String test() {
-    	return "ahahhaha";
+	@RequestMapping("/logout")
+    public void logout(HttpSession session) {
+    	session.invalidate();
     }
 }

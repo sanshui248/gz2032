@@ -13,6 +13,7 @@ public class User {
 	private String email;// 邮件
 	private int identity;//用户身份
 	private String password;// 密码
+	private String salt;//加密的盐
 	private Date birthday;// 出生日期
 	private String birthdayStr;// 页面显示的出生日期
 	private String phone;// 联系电话
@@ -21,6 +22,9 @@ public class User {
 	private int booksNumber;// 可借书籍数量
 	private List<BorrowingDetails> borrowingHistory;//借阅历史
 	
+	public String getSalt() {
+		return salt;
+	}
 	public List<BorrowingDetails> getBorrowingHistory() {
 		return borrowingHistory;
 	}
@@ -88,6 +92,7 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+		this.salt="salt";
 	}
 	public Date getBirthday() {
 		return birthday;
