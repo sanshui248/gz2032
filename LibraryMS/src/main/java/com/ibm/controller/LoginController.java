@@ -23,6 +23,13 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 	
+	/**
+	 *        登录
+	 * @param id 登录账号
+	 * @param password  登录名
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/login")
 	public User login(int id,String password,HttpSession session) {
 		//根据用户id获取用户
@@ -38,6 +45,10 @@ public class LoginController {
         
 	}
 	
+	/**
+	 * 	用户退出
+	 * @param session
+	 */
 	@RequestMapping("/logout")
     public void logout(HttpSession session) {
     	session.invalidate();

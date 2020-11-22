@@ -15,6 +15,10 @@
 		select * from user where name=#{name}
 	</select>
 	
+	<select id="getUserById" parameterType="int" resultType="com.ibm.domain.User">
+		select * from user where user_id=#{id}
+	</select>
+	
 	<update id="updateUser" parameterType="com.ibm.domain.User">
 		update USER 
 		set 

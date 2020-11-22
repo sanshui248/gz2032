@@ -37,7 +37,7 @@ public class User {
 	public void setBirthdayStr() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(birthday);					
-		String str = calendar.get(Calendar.YEAR)+"-"+calendar.get(Calendar.MONTH)+"-"+calendar.get(Calendar.DATE);
+		String str = calendar.get(Calendar.YEAR)+"-"+(calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.DATE);
 		this.birthdayStr = str;
 	}
 	public int getUserId() {

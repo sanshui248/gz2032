@@ -13,4 +13,5 @@ mybatis:
   # 指定sql映射文件位置
   mapper-locations: classpath:mybatis/mapper/*.xml  
   configuration:    map-underscore-to-camel-case: true
+server:  port: 8081
   
