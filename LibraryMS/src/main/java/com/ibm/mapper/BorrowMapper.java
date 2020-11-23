@@ -34,7 +34,10 @@ public interface BorrowMapper {
 	public void update(@Param("borrow") BorrowingDetails borrow);
 	
 	//根据ID修改借阅状态
-	public void updateStatesById(Date reTime, Integer uid, Integer bid);
+	public void updateStatesById(Date reTime, Integer borrowId);
+	
+	// 根据ID查询借阅记录
+	public BorrowingDetails getBorrowById(Integer borrowId);
 	
 	//查找借阅内容
 	public BorrowingDetails selectByBookIdAndUserId(@Param("borrow") BorrowingDetails borrow);

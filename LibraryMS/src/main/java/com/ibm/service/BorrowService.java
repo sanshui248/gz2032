@@ -24,6 +24,8 @@ public interface BorrowService {
 	public Integer getBorrowCountByYear();
 
 	public Integer getReturnCountByYear();
+	
+	public BorrowingDetails getBorrowById(Integer borrowId);
 
 	public void save(BorrowingDetails borrow);
 
@@ -31,7 +33,7 @@ public interface BorrowService {
 
 	public void update(BorrowingDetails borrow);
 	
-	public void updateStatesById(Date reTime, Integer uid, Integer bid);
+	public void updateStatesById(Date reTime, Integer borrowId);
 
 	public BorrowingDetails selectByBookIdAndUserId(BorrowingDetails borrowingDetails);
 

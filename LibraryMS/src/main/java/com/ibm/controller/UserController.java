@@ -155,7 +155,7 @@ public class UserController {
 	 * @param session
 	 * @return
 	 */
-	@CrossOrigin(origins = "*",allowedHeaders = "*",allowCredentials = "true")
+	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/borrow/{bookId}")
 	public String borrowBook(@PathVariable("bookId") int bookId, HttpSession session) {
 		System.out.println(session.getId());
@@ -190,13 +190,14 @@ public class UserController {
 	 * @return
 	 */
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
-	@RequestMapping("/return/{bookId}")
-	public String returnBook(@PathVariable("bookId") int bookId, HttpSession session) {
+	@RequestMapping("/return/{borrowId}")
+	public String returnBook(@PathVariable("borrowId") int borrowId, HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		int userId = user.getUserId();
 //		User user = this.userService.getUserByName("赵");
 //		int userId = user.getUserId();
-		Book book = this.bookService.getById(bookId);
+		BorrowingDetails borrow = borrowService.getBorrowById(borrowId);
+		Book book = this.bookService.getById(borrow.getBook().getBookId());
 
 //		BorrowingDetails borrowingDetails2 = new BorrowingDetails();
 //		Book book2 = new Book();
@@ -211,7 +212,7 @@ public class UserController {
 //		borrowingDetails.setReturnTime(new Date());
 //		this.borrowService.update(borrowingDetails);
 		
-		this.borrowService.updateStatesById(new Date(), userId, bookId);
+		this.borrowService.updateStatesById(new Date(), borrowId);
 		
 		book.setSurplusNumber(book.getSurplusNumber() + 1);
 		this.bookService.update(book);

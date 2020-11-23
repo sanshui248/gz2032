@@ -75,6 +75,11 @@ public class BorrowServiceImpl implements BorrowService {
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy");
 		return borrowMapper.getCountByYear(2, ft.format(year));
 	}
+	
+	@Override
+	public BorrowingDetails getBorrowById(Integer borrowId) {
+		return this.borrowMapper.getBorrowById(borrowId);
+	}
 
 	@Override
 	public void save(BorrowingDetails borrow) {
@@ -92,8 +97,8 @@ public class BorrowServiceImpl implements BorrowService {
 	}
 
 	@Override
-	public void updateStatesById(Date reTime, Integer uid, Integer bid) {
-		borrowMapper.updateStatesById(reTime, uid, bid);
+	public void updateStatesById(Date reTime, Integer borrowId) {
+		borrowMapper.updateStatesById(reTime, borrowId);
 	}
 
 	@Override

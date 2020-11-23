@@ -42,6 +42,14 @@
 		borrow.user_id
 		and book.book_id = borrow.book_id
 	</select>
+	
+	<select id="getBorrowById" parameterType="Integer" resultMap="borrowingDetailsMap">
+		select borrow.*, user.name, book.book_name
+		from user, book, borrow
+		where user.user_id = borrow.user_id
+		and book.book_id = borrow.book_id
+		and borrow_id = #{borrowId}
+	</select>
 
 	<select id="selectByKey" parameterType="String"
 		resultMap="borrowingDetailsMap">
@@ -117,9 +125,8 @@
 	</update>
 
 	<update id="updateStatesById">
-		update borrow set borrow_states = 0, return_time =
-		#{reTime}
-		where user_id = #{uid} and book_id = #{bid}
+		update borrow set borrow_states = 0, return_time = #{reTime}
+		where borrow_id = #{borrowId}
 	</update>
 
 	<select id="selectByBookIdAndUserId"
