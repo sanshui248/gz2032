@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
+import com.ibm.mapper.BookMapper;
 import com.ibm.mapper.UserMapper;
 import com.ibm.service.UserService;
 
@@ -17,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserMapper userMapper;
+	
+	@Autowired
+	BookMapper bookMapper;
 
 	@Override
 	public User getUserByName(String name) {
@@ -85,6 +89,12 @@ public class UserServiceImpl implements UserService {
 		
 		this.userMapper.updatePasswordByUserId(user);
 		
+	}
+
+	@Override
+	public List<BorrowingDetails> selectShelves(int userId) {
+		List<BorrowingDetails> myShelves = this.bookMapper.selectShelves(userId);
+		return myShelves;
 	}
 
 }

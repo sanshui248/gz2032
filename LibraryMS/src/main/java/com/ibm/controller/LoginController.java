@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,16 +31,18 @@ public class LoginController {
 	 * @param session
 	 * @return
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/login")
 	public User login(int id,String password,HttpSession session) {
+		System.out.println(session.getId());
 		//根据用户id获取用户
 		User user = this.userService.getUserById(id);
 		if (user!=null) {
 			Md5Hash md5Hash = new Md5Hash(password,"salt");
 			if (md5Hash.toString().equals(user.getPassword())) {
 				user.setPassword(password);
+				session.setAttribute("user", user);
 			}
-			session.setAttribute("user", user);
 		}
         return user;
         

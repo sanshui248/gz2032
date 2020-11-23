@@ -4,6 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ibm.mapper.UserMapper">
 
+	<resultMap type="com.ibm.domain.BorrowingDetails" id="borrowingDetailsMap">
+		<result column="borrow_time" property="borrowTime"/>
+		<result column="deadline" property="deadline"/>
+		<result column="return_time" property="returnTime"/>
+		<result column="valid_time" property="validTime"/>
+		<result column="borrow_states" property="borrowStates"/>
+		<association property="user" javaType="com.ibm.domain.User">
+			 <id column="user_id" property="userId"/>
+			 <result column="name" property="name"/>
+		</association>
+		<association property="book" javaType="com.ibm.domain.Book">
+			 <id column="book_id" property="bookId"/>
+			 <result column="book_name" property="bookName"/>
+		</association>
+	</resultMap>
+
 	<insert id="saveUser" parameterType="com.ibm.domain.User">
 		INSERT 
 		USER(name,sex,age,email,password,birthday,phone,address,introduction,identity,books_number) 
@@ -35,12 +51,12 @@
 		select * from user where name like concat('%', #{vagueName}, '%') order by name
 	</select>
 	
-	<select id="selectBorrowingDetailsByUserId" parameterType="int" resultType="com.ibm.domain.BorrowingDetails">
-		SELECT user_id,name,book_id,book_name,user.name name,borrow_time,deadline,valid_time,borrow_stutas,return_time 
-		FROM user 
-		INNER JOIN (SELECT book.book_id book_id,book_name,borrow_time,deadline,valid_time,borrow_stutas,return_time FROM borrow  
-		INNER JOIN book ON book.book_id=borrow.book_id where user_id=#{userId} and borrow_stutas=1) book_borrow 
-		ON user.user_id=#{userId}
+	<select id="selectBorrowingDetailsByUserId" parameterType="int" resultMap="borrowingDetailsMap">
+		select borrow.*, user.name, book.book_name
+		from user, book, borrow
+		where user.user_id = borrow.user_id
+		and book.book_id = borrow.book_id
+		and user.user_id = #{userId}
 	</select>
 	
 	<delete id="deleteUser" parameterType="int">

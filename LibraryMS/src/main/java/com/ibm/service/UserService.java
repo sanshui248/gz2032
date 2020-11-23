@@ -25,4 +25,6 @@ public interface UserService {
 	public User getUserById(int id);
 
 	public void updatePasswordByUserId(String password, int userId);
+
+	public List<BorrowingDetails> selectShelves(int userId);
 }

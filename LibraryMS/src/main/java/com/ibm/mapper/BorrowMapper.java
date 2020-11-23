@@ -42,5 +42,4 @@ public interface BorrowMapper {
 	// 根据图书ID查询借阅记录
 	public List<BorrowingDetails> selectBorrowsByBookId(Integer id);
 
-
 }

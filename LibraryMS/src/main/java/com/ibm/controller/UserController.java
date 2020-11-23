@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections4.functors.TruePredicate;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -133,6 +134,20 @@ public class UserController {
 		this.userService.deleteUser(userId);
 		return "删除成功";
 	}
+	
+	/**
+	 * @Description用户书架
+	 * @param session
+	 * @return
+	 */
+	@CrossOrigin(origins = "*",allowedHeaders = "*")
+	@RequestMapping("/bookshelves")
+	public List<BorrowingDetails> bookshelves(HttpSession session){
+		System.out.println(session.getId());
+		User user = (User) session.getAttribute("user");
+		List<BorrowingDetails> bookshelves = this.userService.selectShelves(user.getUserId());
+		return bookshelves;
+	} 
 
 	/**
 	 * @Description借阅书籍
@@ -140,8 +155,10 @@ public class UserController {
 	 * @param session
 	 * @return
 	 */
+	@CrossOrigin(origins = "*",allowedHeaders = "*",allowCredentials = "true")
 	@RequestMapping("/borrow/{bookId}")
 	public String borrowBook(@PathVariable("bookId") int bookId, HttpSession session) {
+		System.out.println(session.getId());
 		User user = (User) session.getAttribute("user");
 		int userId = user.getUserId();
 //		User user = this.userService.getUserByName("赵");
@@ -172,6 +189,7 @@ public class UserController {
 	 * @param session
 	 * @return
 	 */
+	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/return/{bookId}")
 	public String returnBook(@PathVariable("bookId") int bookId, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -202,6 +220,13 @@ public class UserController {
 		return "归还成功";
 	}
 	
+	/**
+	 * @Description修改密码
+	 * @param password
+	 * @param session
+	 * @return
+	 */
+	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/changPwd")
 	public String changPassword(String password,HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -215,6 +240,7 @@ public class UserController {
 	 * @param file
 	 * @return
 	 */
+	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/import")
 	public String importUser(@RequestParam("file") MultipartFile file) {
 		try {
@@ -259,6 +285,7 @@ public class UserController {
 	 * @param response
 	 * @throws IOException
 	 */
+	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/export")
 	public void exportUser(HttpServletResponse response) throws IOException {
 		XSSFWorkbook workbook = new XSSFWorkbook();

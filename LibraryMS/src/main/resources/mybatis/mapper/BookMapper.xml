@@ -94,4 +94,19 @@
 		where book_id=#{bookId}
 	</update>
 	
+	<select id="selectShelves" parameterType="int" resultType="com.ibm.vo.MyBookShelves">
+		select
+		book_id,borrow_time,deadline,theme_name,country_name,type_name
+		from type left join (select
+		book_id,borrow_time,deadline,theme_name,country_name,type_id from
+		country left join (select
+		bk_br.book_id,bk_br.borrow_time,bk_br.deadline,theme.theme_name,bk_br.country_id,bk_br.type_id
+		from
+		(select br.borrow_time,br.deadline,bk.* from book bk
+		left join borrow br on bk.book_id = bk.book_id
+		where br.user_id = #{userId}) bk_br
+		left join theme on theme.theme_id = bk_br.theme_id) br_bk_th on
+		br_bk_th.country_id = country.country_id) br_bk_th_c on
+		type.type_id=br_bk_th_c.type_id
+	</select>
 </mapper>

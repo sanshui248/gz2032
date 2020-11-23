@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
+import com.ibm.domain.BorrowingDetails;
 
 public interface BookMapper {
 
@@ -27,5 +28,8 @@ public interface BookMapper {
 
 	// 更新图书信息
 	public void update(Book book);
+	
+	//查找我的书架
+	public List<BorrowingDetails> selectShelves(int userId);
 	
 }
