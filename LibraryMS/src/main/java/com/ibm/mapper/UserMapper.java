@@ -2,6 +2,8 @@ package com.ibm.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
 
@@ -21,4 +23,6 @@ public interface UserMapper {
 	public List<User> selectUserListByVagueName(String vageName);//模糊查询用户
 	
 	public User getUserById(int id);//根据用户id获取用户信息
+
+	public void updatePasswordByUserId(@Param("user") User user);//根据用户id修改密码
 }

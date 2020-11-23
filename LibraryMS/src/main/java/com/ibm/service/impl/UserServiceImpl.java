@@ -77,4 +77,14 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public void updatePasswordByUserId(String password, int userId) {
+		User user = new User();
+		user.setUserId(userId);
+		user.setPassword(password);
+		
+		this.userMapper.updatePasswordByUserId(user);
+		
+	}
+
 }

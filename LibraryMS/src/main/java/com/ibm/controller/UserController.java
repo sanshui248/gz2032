@@ -14,13 +14,11 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -202,6 +200,14 @@ public class UserController {
 		user.setBooksNumber(user.getBooksNumber() - 1);
 		this.userService.updateUser(user);
 		return "归还成功";
+	}
+	
+	@RequestMapping("/changPwd")
+	public String changPassword(String password,HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		String encryPassword = new Md5Hash(password,"salt").toString();
+		this.userService.updatePasswordByUserId(encryPassword,user.getUserId());
+		return "修改成功";
 	}
 
 	/**

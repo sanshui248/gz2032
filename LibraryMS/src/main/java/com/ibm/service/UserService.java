@@ -23,4 +23,6 @@ public interface UserService {
 	public List<User> selectAllUser();
 
 	public User getUserById(int id);
+
+	public void updatePasswordByUserId(String password, int userId);
 }

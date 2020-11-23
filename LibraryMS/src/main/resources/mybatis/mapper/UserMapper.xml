@@ -46,4 +46,8 @@
 	<delete id="deleteUser" parameterType="int">
 		delete user,borrow from user left join borrow on user.user_id=borrow.user_id where user.user_id=#{userId};
 	</delete>
+	
+	<update id="updatePasswordByUserId" parameterType="com.ibm.domain.User">
+		update user set password=#{user.password} where user_id=#{user.userId}
+	</update>
 </mapper>
