@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections4.functors.TruePredicate;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -137,35 +135,25 @@ public class UserController {
 	
 	/**
 	 * @Description用户书架
-	 * @param session
 	 * @return
 	 */
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/bookshelves")
-	public List<BorrowingDetails> bookshelves(HttpSession session){
-		System.out.println(session.getId());
-		User user = (User) session.getAttribute("user");
-		List<BorrowingDetails> bookshelves = this.userService.selectShelves(user.getUserId());
+	public List<BorrowingDetails> bookshelves(int userId){
+		List<BorrowingDetails> bookshelves = this.userService.selectShelves(userId);
 		return bookshelves;
 	} 
 
 	/**
 	 * @Description借阅书籍
 	 * @param bookId  书籍id
-	 * @param session
 	 * @return
 	 */
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
-	@RequestMapping("/borrow/{bookId}")
-	public String borrowBook(@PathVariable("bookId") int bookId, HttpSession session) {
-		System.out.println(session.getId());
-		User user = (User) session.getAttribute("user");
-		int userId = user.getUserId();
-//		User user = this.userService.getUserByName("赵");
-//		int userId = user.getUserId();
-		System.out.println(userId);
+	@RequestMapping("/borrow")
+	public String borrowBook(int userId,int bookId) {
+		User user = this.userService.getUserById(userId);
 		int borrowNum = user.getBooksNumber();
-
 		if (borrowNum == 3) {
 			return "借阅数量达到上限，请先归还";
 		} else {
@@ -186,31 +174,14 @@ public class UserController {
 	/**
 	 * @Description归还书籍
 	 * @param bookId  书籍id
-	 * @param session
 	 * @return
 	 */
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
-	@RequestMapping("/return/{borrowId}")
-	public String returnBook(@PathVariable("borrowId") int borrowId, HttpSession session) {
-		User user = (User) session.getAttribute("user");
-		int userId = user.getUserId();
-//		User user = this.userService.getUserByName("赵");
-//		int userId = user.getUserId();
+	@RequestMapping("/return")
+	public String returnBook(int userId, int borrowId) {
 		BorrowingDetails borrow = borrowService.getBorrowById(borrowId);
 		Book book = this.bookService.getById(borrow.getBook().getBookId());
-
-//		BorrowingDetails borrowingDetails2 = new BorrowingDetails();
-//		Book book2 = new Book();
-//		book2.setBookId(bookId);
-//		borrowingDetails2.setBook(book2);
-//		User user2 = new User();
-//		user2.setUserId(userId);
-//		borrowingDetails2.setUser(user2);
-//		BorrowingDetails borrowingDetails = this.borrowService.selectByBookIdAndUserId(borrowingDetails2);
-
-//		borrowingDetails.setBorrowStates(0);
-//		borrowingDetails.setReturnTime(new Date());
-//		this.borrowService.update(borrowingDetails);
+		User user = this.userService.getUserById(userId);
 		
 		this.borrowService.updateStatesById(new Date(), borrowId);
 		
@@ -224,15 +195,13 @@ public class UserController {
 	/**
 	 * @Description修改密码
 	 * @param password
-	 * @param session
 	 * @return
 	 */
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/changPwd")
-	public String changPassword(String password,HttpSession session) {
-		User user = (User) session.getAttribute("user");
+	public String changPassword(int userId,String password) {
 		String encryPassword = new Md5Hash(password,"salt").toString();
-		this.userService.updatePasswordByUserId(encryPassword,user.getUserId());
+		this.userService.updatePasswordByUserId(encryPassword,userId);
 		return "修改成功";
 	}
 
