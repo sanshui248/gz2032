@@ -68,6 +68,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/updateUser")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public String updateUser(@RequestBody User user) {
 		this.userService.updateUser(user);
 		return "更新成功";
@@ -80,6 +81,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/selectUserPage")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public PageInfo<User> selectUserListByPage(int pageNum, int pageSize) {
 		List<User> selectUserListByPage = this.userService.selectUserListByPage(pageNum, pageSize);
 		PageInfo<User> pageInfo = new PageInfo<User>();
@@ -116,6 +118,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/selectBorrowHistory")
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public List<BorrowingDetails> selectBorrowHistory(int userId) {
 		List<BorrowingDetails> selectBorrowHistory = this.userService.selectBorrowingDetailsByUserId(userId);
 		return selectBorrowHistory;

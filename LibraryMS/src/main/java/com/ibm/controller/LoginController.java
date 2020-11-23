@@ -41,19 +41,10 @@ public class LoginController {
 			Md5Hash md5Hash = new Md5Hash(password,"salt");
 			if (md5Hash.toString().equals(user.getPassword())) {
 				user.setPassword(password);
-				session.setAttribute("user", user);
 			}
 		}
         return user;
         
 	}
 	
-	/**
-	 * 	用户退出
-	 * @param session
-	 */
-	@RequestMapping("/logout")
-    public void logout(HttpSession session) {
-    	session.invalidate();
-    }
 }
