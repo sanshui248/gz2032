@@ -55,6 +55,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int userId) {
 		List<BorrowingDetails> borrowHistory = this.userMapper.selectBorrowingDetailsByUserId(userId);
+		for (BorrowingDetails borrowingDetails : borrowHistory) {
+			System.out.println(borrowingDetails.getBook().getBookId());
+		}
 		return borrowHistory;
 	}
 
@@ -96,5 +99,12 @@ public class UserServiceImpl implements UserService {
 		List<BorrowingDetails> myShelves = this.bookMapper.selectShelves(userId);
 		return myShelves;
 	}
+
+	@Override
+	public List<BorrowingDetails> selectBorrowingDetailsByUserId2(int userId) {
+		return userMapper.selectBorrowingDetailsByUserId2(userId);
+	}
+	
+	
 
 }

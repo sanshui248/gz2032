@@ -5,6 +5,7 @@
 <mapper namespace="com.ibm.mapper.UserMapper">
 
 	<resultMap type="com.ibm.domain.BorrowingDetails" id="borrowingDetailsMap">
+		<id column="borrow_id" property="borrowId"/>
 		<result column="borrow_time" property="borrowTime"/>
 		<result column="deadline" property="deadline"/>
 		<result column="return_time" property="returnTime"/>
@@ -53,6 +54,14 @@
 	
 	<select id="selectBorrowingDetailsByUserId" parameterType="int" resultMap="borrowingDetailsMap">
 		select borrow.*, user.name, book.book_name
+		from user, book, borrow
+		where user.user_id = borrow.user_id
+		and book.book_id = borrow.book_id
+		and user.user_id = #{userId}
+	</select>
+	
+	<select id="selectBorrowingDetailsByUserId2" flushCache="true" useCache="false" parameterType="int" resultMap="borrowingDetailsMap">
+		select borrow.*,user.user_id, user.name,book.book_id,book.book_name
 		from user, book, borrow
 		where user.user_id = borrow.user_id
 		and book.book_id = borrow.book_id

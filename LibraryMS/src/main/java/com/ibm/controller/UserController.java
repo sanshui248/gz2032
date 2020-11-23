@@ -120,7 +120,9 @@ public class UserController {
 	@RequestMapping("/selectBorrowHistory")
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public List<BorrowingDetails> selectBorrowHistory(int userId) {
-		List<BorrowingDetails> selectBorrowHistory = this.userService.selectBorrowingDetailsByUserId(userId);
+		System.out.println(userId);
+		List<BorrowingDetails> selectBorrowHistory = this.userService.selectBorrowingDetailsByUserId2(userId);
+		System.out.println(selectBorrowHistory);
 		return selectBorrowHistory;
 	}
 
@@ -153,8 +155,9 @@ public class UserController {
 	 * @return
 	 */
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
-	@RequestMapping("/borrow")
+	@RequestMapping(value = "/borrow")
 	public String borrowBook(int userId,int bookId) {
+		//System.out.println(userId+" "+bookId);
 		User user = this.userService.getUserById(userId);
 		int borrowNum = user.getBooksNumber();
 		if (borrowNum == 3) {

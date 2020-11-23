@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class BorrowingDetails {
+	private int borrowId;//借阅id
 	private Date borrowTime; // 借阅日期
 	private String borrowTimeStr; // 借阅日期--String类型
 	private Date deadline; // 截止日期
@@ -15,6 +16,13 @@ public class BorrowingDetails {
 	private User user; // 用户
 	private Book book;// 图书
 	
+	public int getBorrowId() {
+		return borrowId;
+	}
+	
+	public void setBorrowId(int borrowId) {
+		this.borrowId = borrowId;
+	}
 	public User getUser() {
 		return user;
 	}

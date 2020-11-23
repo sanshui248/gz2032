@@ -1,7 +1,5 @@
 package com.ibm.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,8 +31,7 @@ public class LoginController {
 	 */
 	@CrossOrigin(origins = "*")
 	@RequestMapping("/login")
-	public User login(int id,String password,HttpSession session) {
-		System.out.println(session.getId());
+	public User login(int id,String password) {
 		//根据用户id获取用户
 		User user = this.userService.getUserById(id);
 		if (user!=null) {

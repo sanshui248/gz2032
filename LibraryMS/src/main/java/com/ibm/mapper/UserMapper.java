@@ -16,7 +16,7 @@ public interface UserMapper {
 	
 	public List<User> selectAllUser();//查询所有用户
 	
-	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int id);//查询用户借阅详情
+	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int userId);//查询用户借阅详情
 
 	public void deleteUser(int userId);//注销用户
 	
@@ -25,4 +25,6 @@ public interface UserMapper {
 	public User getUserById(int id);//根据用户id获取用户信息
 
 	public void updatePasswordByUserId(@Param("user") User user);//根据用户id修改密码
+	
+	public List<BorrowingDetails> selectBorrowingDetailsByUserId2(int userId);
 }
