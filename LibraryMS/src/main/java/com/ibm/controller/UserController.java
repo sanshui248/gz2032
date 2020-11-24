@@ -58,7 +58,6 @@ public class UserController {
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/saveUser")
 	public int saveUser(@RequestBody User user) {
-		System.out.println(user.getName());
 		this.userService.saveUser(user);
 		int userId = this.userService.getUserId();
 		return userId;
@@ -148,6 +147,7 @@ public class UserController {
 	@RequestMapping("/bookshelves")
 	public List<MyBookShelves> bookshelves(int userId){
 		List<MyBookShelves> bookshelves = this.userService.selectShelves(userId);
+		System.out.println(bookshelves);
 		return bookshelves;
 	} 
 
@@ -159,6 +159,8 @@ public class UserController {
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping(value = "/borrow")
 	public String borrowBook(int userId,int bookId) {
+		System.out.println(userId);
+		System.out.println(bookId);
 		User user = this.userService.getUserById(userId);
 		int borrowNum = user.getBooksNumber();
 		if (borrowNum == 3) {
