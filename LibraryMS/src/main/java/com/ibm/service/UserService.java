@@ -28,5 +28,5 @@ public interface UserService {
 
 	public List<BorrowingDetails> selectShelves(int userId);
 	
-	public List<BorrowingDetails> selectBorrowingDetailsByUserId2(int userId);
+	public int getUserId();
 }

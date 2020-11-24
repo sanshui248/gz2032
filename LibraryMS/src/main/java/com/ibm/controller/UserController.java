@@ -56,10 +56,11 @@ public class UserController {
 	 */
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/saveUser")
-	public String saveUser(@RequestBody User user) {
+	public int saveUser(@RequestBody User user) {
 		System.out.println(user.getName());
 		this.userService.saveUser(user);
-		return "插入成功";
+		int userId = this.userService.getUserId();
+		return userId;
 	}
 
 	/**
@@ -121,7 +122,7 @@ public class UserController {
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public List<BorrowingDetails> selectBorrowHistory(int userId) {
 		System.out.println(userId);
-		List<BorrowingDetails> selectBorrowHistory = this.userService.selectBorrowingDetailsByUserId2(userId);
+		List<BorrowingDetails> selectBorrowHistory = this.userService.selectBorrowingDetailsByUserId(userId);
 		System.out.println(selectBorrowHistory);
 		return selectBorrowHistory;
 	}

@@ -26,5 +26,5 @@ public interface UserMapper {
 
 	public void updatePasswordByUserId(@Param("user") User user);//根据用户id修改密码
 	
-	public List<BorrowingDetails> selectBorrowingDetailsByUserId2(int userId);
+	public int getUserId();//获取用户登录的账号id
 }

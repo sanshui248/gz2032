@@ -101,8 +101,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<BorrowingDetails> selectBorrowingDetailsByUserId2(int userId) {
-		return userMapper.selectBorrowingDetailsByUserId2(userId);
+	public int getUserId() {
+		int userId = this.userMapper.getUserId();
+		return userId;
 	}
 	
 	

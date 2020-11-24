@@ -60,14 +60,6 @@
 		and user.user_id = #{userId}
 	</select>
 	
-	<select id="selectBorrowingDetailsByUserId2" flushCache="true" useCache="false" parameterType="int" resultMap="borrowingDetailsMap">
-		select borrow.*,user.user_id, user.name,book.book_id,book.book_name
-		from user, book, borrow
-		where user.user_id = borrow.user_id
-		and book.book_id = borrow.book_id
-		and user.user_id = #{userId}
-	</select>
-	
 	<delete id="deleteUser" parameterType="int">
 		delete user,borrow from user left join borrow on user.user_id=borrow.user_id where user.user_id=#{userId};
 	</delete>
@@ -75,4 +67,8 @@
 	<update id="updatePasswordByUserId" parameterType="com.ibm.domain.User">
 		update user set password=#{user.password} where user_id=#{user.userId}
 	</update>
+	
+	<select id="getUserId" resultType="int">
+		select max(user_id) from user;
+	</select>
 </mapper>
