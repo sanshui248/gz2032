@@ -132,6 +132,10 @@ public class UserController {
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@RequestMapping("/deleteUser/{userId}")
 	public String deleteUser(@PathVariable("userId") int userId) {
+		List<MyBookShelves> userShelves = this.userService.selectShelves(userId);
+		if (userShelves==null||userShelves.size()==0) {
+			return "该用户有未还书籍，不可删";
+		}
 		this.userService.deleteUser(userId);
 		return "删除成功";
 	}
