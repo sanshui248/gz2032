@@ -28,6 +28,7 @@ import com.ibm.domain.User;
 import com.ibm.service.BookService;
 import com.ibm.service.BorrowService;
 import com.ibm.service.UserService;
+import com.ibm.vo.MyBookShelves;
 
 /**
  * 
@@ -145,8 +146,8 @@ public class UserController {
 	 */
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping("/bookshelves")
-	public List<BorrowingDetails> bookshelves(int userId){
-		List<BorrowingDetails> bookshelves = this.userService.selectShelves(userId);
+	public List<MyBookShelves> bookshelves(int userId){
+		List<MyBookShelves> bookshelves = this.userService.selectShelves(userId);
 		return bookshelves;
 	} 
 

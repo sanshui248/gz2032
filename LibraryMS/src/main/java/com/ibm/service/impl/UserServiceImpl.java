@@ -12,6 +12,7 @@ import com.ibm.domain.User;
 import com.ibm.mapper.BookMapper;
 import com.ibm.mapper.UserMapper;
 import com.ibm.service.UserService;
+import com.ibm.vo.MyBookShelves;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -95,8 +96,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<BorrowingDetails> selectShelves(int userId) {
-		List<BorrowingDetails> myShelves = this.bookMapper.selectShelves(userId);
+	public List<MyBookShelves> selectShelves(int userId) {
+		List<MyBookShelves> myShelves = this.bookMapper.selectShelves(userId);
 		return myShelves;
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
+import com.ibm.vo.MyBookShelves;
 
 public interface UserService {
 	public User getUserByName(String name);
@@ -26,7 +27,7 @@ public interface UserService {
 
 	public void updatePasswordByUserId(String password, int userId);
 
-	public List<BorrowingDetails> selectShelves(int userId);
+	public List<MyBookShelves> selectShelves(int userId);
 	
 	public int getUserId();
 }
