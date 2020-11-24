@@ -15,6 +15,11 @@ import com.ibm.domain.BorrowingDetails;
 import com.ibm.service.BookService;
 import com.ibm.service.BorrowService;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:图书模块
+ */
 @RestController
 @RequestMapping("/book")
 public class BookController {

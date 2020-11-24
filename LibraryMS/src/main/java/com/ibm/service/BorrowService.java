@@ -5,12 +5,15 @@ import java.util.List;
 
 import com.ibm.domain.BorrowingDetails;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:借阅信息服务层
+ */
 public interface BorrowService {
 
-//	public List<BorrowingDetails> selectAll(Integer pageNum, Integer pageSize);
 	public List<BorrowingDetails> selectAll();
 
-//	public List<BorrowingDetails> selectByKey(String key, Integer pageNum, Integer pageSize);
 	public List<BorrowingDetails> selectByKey(Integer userId, String key);
 
 	public Integer getBorrowCountByDay();

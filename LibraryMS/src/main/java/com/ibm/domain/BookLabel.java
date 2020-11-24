@@ -1,6 +1,10 @@
 package com.ibm.domain;
 
-//图书信息标签类
+/**
+ * 
+ * @author:刘志勇
+ * @Description:图书信息标签类
+ */
 public class BookLabel {
 
 	private int countryId; // 国家id

@@ -4,7 +4,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-//图书信息类
+/**
+ * 
+ * @author:刘志勇
+ * @Description:图书信息类
+ */
 public class Book {
 
 	private Integer bookId; // 图书ID

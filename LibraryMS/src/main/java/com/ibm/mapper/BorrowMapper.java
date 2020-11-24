@@ -7,6 +7,11 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ibm.domain.BorrowingDetails;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:借阅信息的SQL操作
+ */
 public interface BorrowMapper {
 
 	// 查询所有借阅记录
