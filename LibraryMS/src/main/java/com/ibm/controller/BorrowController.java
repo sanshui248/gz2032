@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.service.BorrowService;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:借阅信息模块
+ */
 @RestController
 @RequestMapping("/borrow")
 public class BorrowController {
@@ -29,13 +34,6 @@ public class BorrowController {
 		List<BorrowingDetails> borrows = borrowService.selectAll();
 		return borrows;
 	}
-//	public PageInfo<BorrowingDetails> selectBorrowList(
-//			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-//		List<BorrowingDetails> borrows = borrowService.selectAll(pageNum, pageSize);
-//		PageInfo<BorrowingDetails> pageInfo = new PageInfo<BorrowingDetails>(borrows);
-//		return pageInfo;
-//	}
 
 	/**
 	 * @Description 根据关键字模糊查询对应借阅记录
@@ -48,13 +46,6 @@ public class BorrowController {
 		List<BorrowingDetails> borrows = borrowService.selectByKey(userId, key);
 		return borrows;
 	}
-//	public PageInfo<BorrowingDetails> selectBorrowListByKey(@PathVariable("key") String key,
-//			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-//		List<BorrowingDetails> borrows = borrowService.selectByKey(key, pageNum, pageSize);
-//		PageInfo<BorrowingDetails> pageInfo = new PageInfo<BorrowingDetails>(borrows);
-//		return pageInfo;
-//	}
 
 	/**
 	 * @Description 获取借阅统计数据

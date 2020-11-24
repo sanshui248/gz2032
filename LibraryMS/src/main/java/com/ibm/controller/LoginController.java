@@ -12,9 +12,8 @@ import com.ibm.service.UserService;
 /**
  * 
  * @author 吕守淼
- *
- * @date   2020-11-19 8:28:39
- * @Version 1.0
+ * @Description:用户登录模块
+ * @since   2020-11-19 8:28:39
  */
 @RestController
 public class LoginController {

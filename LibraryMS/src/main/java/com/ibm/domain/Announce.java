@@ -2,8 +2,11 @@ package com.ibm.domain;
 
 import java.util.Date;
 
-
-//公告类
+/**
+ * 
+ * @author:邱海鹏
+ * @Description:公告类
+ */
 public class Announce {
 	private  int announceId;         //公告id
 	private  Date announceTime;      //公告日期

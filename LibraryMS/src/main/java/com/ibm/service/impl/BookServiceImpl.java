@@ -10,37 +10,22 @@ import com.ibm.domain.BookLabel;
 import com.ibm.mapper.BookMapper;
 import com.ibm.service.BookService;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:图书服务层的实现类
+ */
 @Service
 public class BookServiceImpl implements BookService {
 
 	@Autowired
 	private BookMapper bookMapper;
 
-//	@Override
-//	public List<Book> selectAll(Integer pageNum, Integer pageSize) {
-//		PageHelper.startPage(pageNum, pageSize);
-//		List<Book> books = this.bookMapper.selectAll();
-//		return books;
-//	}
 
 	@Override
 	public Book getById(Integer id) {
 		return this.bookMapper.getById(id);
 	}
-
-//	@Override
-//	public List<Book> selectByLabel(BookLabel bookLabel, Integer pageNum, Integer pageSize) {
-//		PageHelper.startPage(pageNum, pageSize);
-//		List<Book> books = bookMapper.selectByLabel(bookLabel);
-//		return books;
-//	}
-
-//	@Override
-//	public List<Book> selectByKey(String key, Integer pageNum, Integer pageSize) {
-//		PageHelper.startPage(pageNum, pageSize);
-//		List<Book> books = bookMapper.selectByKey(key);
-//		return books;
-//	}
 
 	@Override
 	public List<Book> selectAll() {

@@ -6,6 +6,10 @@ import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
 import com.ibm.vo.MyBookShelves;
 
+/**
+ * @author:刘志勇
+ * @Description:图书的ＳＱＬ操作
+ */
 public interface BookMapper {
 
 	// 查询所有图书信息

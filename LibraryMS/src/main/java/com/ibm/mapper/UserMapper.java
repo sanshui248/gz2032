@@ -7,6 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:用户的ＳＱＬ操作
+ */
 public interface UserMapper {
 	public User getUserByName(String name);//通过用户名获取用户
 	

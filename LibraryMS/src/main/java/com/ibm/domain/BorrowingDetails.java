@@ -3,6 +3,11 @@ package com.ibm.domain;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:借阅信息类
+ */
 public class BorrowingDetails {
 	private int borrowId;//借阅id
 	private Date borrowTime; // 借阅日期

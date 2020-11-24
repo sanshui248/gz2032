@@ -14,6 +14,11 @@ import com.ibm.mapper.UserMapper;
 import com.ibm.service.UserService;
 import com.ibm.vo.MyBookShelves;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:用户服务层的实现类
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -106,7 +111,5 @@ public class UserServiceImpl implements UserService {
 		int userId = this.userMapper.getUserId();
 		return userId;
 	}
-	
-	
 
 }

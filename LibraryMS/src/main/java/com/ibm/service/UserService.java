@@ -6,6 +6,11 @@ import com.ibm.domain.BorrowingDetails;
 import com.ibm.domain.User;
 import com.ibm.vo.MyBookShelves;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:用户服务层
+ */
 public interface UserService {
 	public User getUserByName(String name);
 

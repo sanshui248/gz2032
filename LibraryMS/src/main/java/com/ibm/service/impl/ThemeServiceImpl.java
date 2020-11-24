@@ -9,6 +9,11 @@ import com.ibm.domain.Theme;
 import com.ibm.mapper.ThemeMapper;
 import com.ibm.service.ThemeService;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:图书主题服务层的实现类
+ */
 @Service
 public class ThemeServiceImpl implements ThemeService {
 

@@ -33,9 +33,8 @@ import com.ibm.vo.MyBookShelves;
 /**
  * 
  * @author 吕守淼
- *
+ * @Description:用户模块
  * @date 2020-11-18 16:25:59
- * @Version 1.0
  */
 @RestController
 @RequestMapping("/user")
@@ -121,9 +120,7 @@ public class UserController {
 	@RequestMapping("/selectBorrowHistory")
 	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	public List<BorrowingDetails> selectBorrowHistory(int userId) {
-		System.out.println(userId);
 		List<BorrowingDetails> selectBorrowHistory = this.userService.selectBorrowingDetailsByUserId(userId);
-		System.out.println(selectBorrowHistory);
 		return selectBorrowHistory;
 	}
 
@@ -147,7 +144,6 @@ public class UserController {
 	@RequestMapping("/bookshelves")
 	public List<MyBookShelves> bookshelves(int userId){
 		List<MyBookShelves> bookshelves = this.userService.selectShelves(userId);
-		System.out.println(bookshelves);
 		return bookshelves;
 	} 
 
@@ -159,8 +155,6 @@ public class UserController {
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping(value = "/borrow")
 	public String borrowBook(int userId,int bookId) {
-		System.out.println(userId);
-		System.out.println(bookId);
 		User user = this.userService.getUserById(userId);
 		int borrowNum = user.getBooksNumber();
 		if (borrowNum == 3) {

@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.ibm.domain.Type;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:图书类型服务层
+ */
 public interface TypeService {
 
 	public List<Type> selectAll();

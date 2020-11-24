@@ -4,6 +4,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:用户类
+ */
 public class User {
 	private int userId; // 用户id
 	private String name; // 姓名

@@ -3,6 +3,11 @@ package com.ibm.vo;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:用户书架类
+ */
 public class MyBookShelves {
 	private int borrowId;
 	private int bookId;

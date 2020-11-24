@@ -12,6 +12,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import com.ibm.domain.BorrowingDetails;
 import com.ibm.service.BorrowService;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:定时任务
+ */
 @Configuration
 @EnableScheduling
 public class ScheduleTask {

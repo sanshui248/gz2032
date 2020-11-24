@@ -1,5 +1,10 @@
 package com.ibm.domain;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:图书标题类
+ */
 public class Theme {
 	private int themeId;
 	private String themeName;

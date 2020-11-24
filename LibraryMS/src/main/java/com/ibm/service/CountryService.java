@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.ibm.domain.Country;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:国家服务层
+ */
 public interface CountryService {
 
 	public List<Country> selectAll();

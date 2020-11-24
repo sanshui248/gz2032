@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ibm.domain.Announce;
 import com.ibm.service.AnnounceService;
 
+/**
+ * 
+ * @author:邱海鹏
+ * @Description:公告栏的删查改
+ */
 @RestController
 @RequestMapping("/announce")
 public class AnnounceController {
@@ -32,7 +37,6 @@ public class AnnounceController {
 	
 	/**
 	 * @Description 删除公告信息
-	 * @param
 	 * @return 
 	 * @return 图书信息列表
 	 */

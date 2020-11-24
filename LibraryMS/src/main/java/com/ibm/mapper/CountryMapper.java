@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.ibm.domain.Country;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:国家的SQL操作
+ */
 public interface CountryMapper {
 
 	public List<Country> selectAll();

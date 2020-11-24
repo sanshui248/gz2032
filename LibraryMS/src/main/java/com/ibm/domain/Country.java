@@ -1,5 +1,10 @@
 package com.ibm.domain;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:国家类
+ */
 public class Country {
 	private int countryId;
 	private String countryName;

@@ -1,5 +1,10 @@
 package com.ibm.domain;
 
+/**
+ * 
+ * @author:吕守淼
+ * @Description:图书类型类
+ */
 public class Type {
 	private int typeId;
 	private String typeName;

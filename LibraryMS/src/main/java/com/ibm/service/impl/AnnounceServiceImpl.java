@@ -7,6 +7,11 @@ import com.ibm.domain.Announce;
 import com.ibm.mapper.AnnounceMapper;
 import com.ibm.service.AnnounceService;
 
+/**
+ * 
+ * @author:邱海鹏
+ * @Description:公告栏服务层的实现类
+ */
 @Service
 public class AnnounceServiceImpl implements AnnounceService {
 	

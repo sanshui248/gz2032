@@ -9,6 +9,11 @@ import com.ibm.domain.Type;
 import com.ibm.mapper.TypeMapper;
 import com.ibm.service.TypeService;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:图书类型服务层的实现类
+ */
 @Service
 public class TypeServiceImpl implements TypeService {
 

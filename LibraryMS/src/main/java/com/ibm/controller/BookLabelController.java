@@ -14,6 +14,11 @@ import com.ibm.service.CountryService;
 import com.ibm.service.ThemeService;
 import com.ibm.service.TypeService;
 
+/**
+ * 
+ * @author:刘志勇
+ * @Description:图书标签模块
+ */
 @RestController
 public class BookLabelController {
 
