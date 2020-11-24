@@ -36,12 +36,6 @@ public class BookController {
 		List<Book> books = bookService.selectAll();
 		return books;
 	}
-//	public PageInfo<Book> selectBookList(@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-//		List<Book> books = bookService.selectAll(pageNum, pageSize);
-//		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
-//		return pageInfo;
-//	}
 
 	/**
 	 * @Description 根据ID获取对应图书信息
@@ -64,13 +58,6 @@ public class BookController {
 		List<Book> books = bookService.selectByLabel(bookLabel);
 		return books;
 	}
-//	public PageInfo<Book> selectBookListByLabel(@RequestBody BookLabel bookLabel,
-//			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-//		List<Book> books = bookService.selectByLabel(bookLabel, pageNum, pageSize);
-//		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
-//		return pageInfo;
-//	}
 
 	/**
 	 * @Description 根据关键字模糊查询对应图书信息
@@ -83,13 +70,6 @@ public class BookController {
 		List<Book> books = bookService.selectByKey(key);
 		return books;
 	}
-//	public PageInfo<Book> selectBookListByKey(String key,
-//			@RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
-//			@RequestParam(defaultValue = "5", value = "pageSize") Integer pageSize) {
-//		List<Book> books = bookService.selectByKey(key, pageNum, pageSize);
-//		PageInfo<Book> pageInfo = new PageInfo<Book>(books);
-//		return pageInfo;
-//	}
 
 	/**
 	 * @Description 根据图书ID设置图书借阅记录列表

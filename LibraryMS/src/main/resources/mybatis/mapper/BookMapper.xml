@@ -96,13 +96,13 @@
 	
 	<select id="selectShelves" parameterType="int" resultType="com.ibm.vo.MyBookShelves">
 		select 
-		book_id,book_name,borrow_time,deadline,theme_name,country_name,type_name 
+		book_id,book_name,borrow_id,borrow_time,deadline,theme_name,country_name,type_name 
 		from type inner join (select 
-		book_id,book_name,borrow_time,deadline,theme_name,country_name,type_id from 
+		book_id,book_name,borrow_id,borrow_time,deadline,theme_name,country_name,type_id from 
 		country inner join (select 
-		bk_br.book_id,bk_br.book_name,bk_br.borrow_time,bk_br.deadline,theme.theme_name,bk_br.country_id,bk_br.type_id 
+		bk_br.book_id,bk_br.book_name,bk_br.borrow_id,bk_br.borrow_time,bk_br.deadline,theme.theme_name,bk_br.country_id,bk_br.type_id 
 		from 
-		(select bk.*,br.borrow_time,br.deadline from book bk 
+		(select bk.*,br.borrow_id,br.borrow_time,br.deadline from book bk 
 		inner join borrow br on br.book_id = bk.book_id 
 		where br.borrow_states=1 and br.user_id = #{userId}) bk_br 
 		inner join theme on theme.theme_id = bk_br.theme_id) br_bk_th on 
