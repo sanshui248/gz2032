@@ -18,6 +18,7 @@ public class BorrowingDetails {
 	private String returnTimeStr; // 归还日期--String类型
 	private int validTime; // 借阅有效期
 	private int borrowStates; // 借阅状态
+	private String borrowStatesStr; // 借阅状态
 	private User user; // 用户
 	private Book book;// 图书
 	
@@ -34,6 +35,14 @@ public class BorrowingDetails {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getBorrowStatesStr() {
+		return borrowStatesStr;
+	}
+
+	public void setBorrowStatesStr(String borrowStatesStr) {
+		this.borrowStatesStr = borrowStatesStr;
 	}
 
 	public Book getBook() {
@@ -133,6 +142,11 @@ public class BorrowingDetails {
 
 	public void setBorrowStates(int borrowStates) {
 		this.borrowStates = borrowStates;
+		if (borrowStates==1) {
+			this.setBorrowStatesStr("借出");
+		}else {
+			this.setBorrowStatesStr("已归还");
+		}
 	}
 
 }
