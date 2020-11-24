@@ -62,7 +62,7 @@
 				and book.theme_id = #{themeId}
 			</if>
 			<if test="lengthRange != null and lengthRange != 0 ">
-				and pages between #{minPage} and #{maxPage}
+				and pages = #{lengthRange}
 			</if>
 		</where>
 	</select>

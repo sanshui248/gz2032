@@ -42,6 +42,7 @@ public class BookController {
 	 * @param 图书ID
 	 * @return 对应的图书信息
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/query")
 	public Book selectBookById(Integer bookId) {
 		return bookService.getById(bookId);
@@ -76,8 +77,9 @@ public class BookController {
 	 * @param 图书ID
 	 * @return 更新好的图书信息类
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/borrows")
-	public List<BorrowingDetails> setBookBorrows(Integer id) {
+	public List<BorrowingDetails> selectBookBorrows(Integer id) {
 		List<BorrowingDetails> bookBorrowingHistory = this.borrowService.selectBorrowsByUserId(id);
 		return bookBorrowingHistory;
 	}
@@ -87,6 +89,7 @@ public class BookController {
 	 * @param 新的图书信息
 	 * @return 跳转到列表页面
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/add")
 	public String addBook(@RequestBody Book book) {
 		book.setOnTime(new Date());
@@ -99,12 +102,11 @@ public class BookController {
 	 * @param 更新后的图书信息
 	 * @return 跳转到列表页面
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/update")
 	public String updateBook(@RequestBody Book book) {
 		if(book.getOffNumber() != 0) {
 			book.setOffTime(new Date());
-		}else {
-			book.setOffTime(null);
 		}
 		bookService.update(book);
 		return "更新成功";
@@ -115,6 +117,7 @@ public class BookController {
 	 * @param 图书ID
 	 * @return 跳转到列表页面
 	 */
+	@CrossOrigin(origins = "*")
 	@RequestMapping("/delete")
 	public String deleteBook(Integer bookId) {
 		bookService.deleteById(bookId);

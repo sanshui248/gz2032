@@ -12,8 +12,8 @@ public interface BorrowMapper {
 	// 查询所有借阅记录
 	public List<BorrowingDetails> selectAll();
 
-	// 根据关键字模糊查询借阅记录
-	public List<BorrowingDetails> selectByKey(String key);
+	// 根据关键字模糊查询用户借阅记录
+	public List<BorrowingDetails> selectByKey(Integer userId, String key);
 
 	// 根据参数进行今日借阅或归还数量统计 1:借阅 2：归还
 	public Integer getCountByDay(Integer boOrRu, String day);

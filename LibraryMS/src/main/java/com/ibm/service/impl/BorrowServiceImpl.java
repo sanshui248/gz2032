@@ -33,6 +33,8 @@ public class BorrowServiceImpl implements BorrowService {
 //		List<BorrowingDetails> borrows = borrowMapper.selectByKey(key);
 //		return borrows;
 //	}
+	
+	
 
 	@Override
 	public Integer getBorrowCountByDay() {
@@ -136,8 +138,8 @@ public class BorrowServiceImpl implements BorrowService {
 	}
 
 	@Override
-	public List<BorrowingDetails> selectByKey(String key) {
-		return borrowMapper.selectByKey(key);
+	public List<BorrowingDetails> selectByKey(Integer userId, String key) {
+		return borrowMapper.selectByKey(userId, key);
 	}
 
 }

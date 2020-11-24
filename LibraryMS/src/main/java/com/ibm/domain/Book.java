@@ -20,7 +20,8 @@ public class Book {
 	private Integer surplusNumber; // 剩余数量
 	private Type type; // 类型
 	private Theme theme; // 主题
-	private Integer pages; // 篇幅
+	// 篇幅  1:短篇  2:中篇  3:长篇   4:超长篇
+	private Integer pages; 
 	private List<BorrowingDetails> borrows; // 借阅记录
 
 	public Integer getBookId() {
@@ -68,22 +69,6 @@ public class Book {
 	}
 
 	public void setPages(int pages) {
-		switch (pages) {
-		case 1:
-			this.pages = 250;
-			break;
-		case 2:
-			this.pages = 750;
-			break;
-		case 3:
-			this.pages = 1250;
-			break;
-		case 4:
-			this.pages = 1750;
-			break;
-		default:
-			break;
-		}
 		this.pages = pages;
 	}
 
@@ -138,7 +123,9 @@ public class Book {
 
 	public void setOffTime(Date offTime) {
 		this.offTime = offTime;
-		this.setOffTimeStr();
+		if (offTime != null) {
+			this.setOffTimeStr();
+		}
 	}
 
 	public String getOffTimeStr() {

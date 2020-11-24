@@ -11,7 +11,7 @@ public interface BorrowService {
 	public List<BorrowingDetails> selectAll();
 
 //	public List<BorrowingDetails> selectByKey(String key, Integer pageNum, Integer pageSize);
-	public List<BorrowingDetails> selectByKey(String key);
+	public List<BorrowingDetails> selectByKey(Integer userId, String key);
 
 	public Integer getBorrowCountByDay();
 
