@@ -158,7 +158,6 @@ public class UserController {
 	@CrossOrigin(origins = "*",allowedHeaders = "*")
 	@RequestMapping(value = "/borrow")
 	public String borrowBook(int userId,int bookId) {
-		//System.out.println(userId+" "+bookId);
 		User user = this.userService.getUserById(userId);
 		int borrowNum = user.getBooksNumber();
 		if (borrowNum == 3) {
