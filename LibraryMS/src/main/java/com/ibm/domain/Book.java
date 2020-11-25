@@ -98,7 +98,9 @@ public class Book {
 
 	public void setOnTime(Date onTime) {
 		this.onTime = onTime;
-		this.setOnTimeStr();
+		if (onTime!=null) {
+			this.setOnTimeStr();
+		}
 	}
 
 	public String getOnTimeStr() {

@@ -71,7 +71,9 @@ public class BorrowingDetails {
 
 	public void setBorrowTime(Date borrowTime) {
 		this.borrowTime = borrowTime;
-		this.setBorrowTimeStr();
+		if (borrowTime!=null) {
+			this.setBorrowTimeStr();
+		}
 	}
 
 	public String getBorrowTimeStr() {
@@ -113,7 +115,9 @@ public class BorrowingDetails {
 
 	public void setReturnTime(Date returnTime) {
 		this.returnTime = returnTime;
-		this.setReturnTimeStr();
+		if (returnTime!=null) {
+			this.setReturnTimeStr();
+		}
 	}
 
 	public String getReturnTimeStr() {

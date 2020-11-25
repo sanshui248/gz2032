@@ -104,7 +104,9 @@ public class User {
 	}
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
-		this.setBirthdayStr();
+		if (birthday!=null) {
+			this.setBirthdayStr();
+		}
 	}
 	public String getPhone() {
 		return phone;
