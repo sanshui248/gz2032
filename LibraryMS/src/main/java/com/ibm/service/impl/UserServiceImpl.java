@@ -39,14 +39,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUser(User user) {
-		Md5Hash md5Hash = new Md5Hash(user.getPassword());
+		Md5Hash md5Hash = new Md5Hash(user.getPassword(),user.getSalt());
 		user.setPassword(md5Hash.toString());
 		this.userMapper.saveUser(user);
 	}
 
 	@Override
 	public void updateUser(User user) {
-		Md5Hash md5Hash = new Md5Hash(user.getPassword());
+		Md5Hash md5Hash = new Md5Hash(user.getPassword(),user.getSalt());
 		user.setPassword(md5Hash.toString());
 		this.userMapper.updateUser(user);
 	}

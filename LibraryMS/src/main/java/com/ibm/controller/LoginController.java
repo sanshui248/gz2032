@@ -34,7 +34,7 @@ public class LoginController {
 		//根据用户id获取用户
 		User user = this.userService.getUserById(id);
 		if (user!=null) {
-			Md5Hash md5Hash = new Md5Hash(password,"salt");
+			Md5Hash md5Hash = new Md5Hash(password,user.getSalt());
 			if (md5Hash.toString().equals(user.getPassword())) {
 				user.setPassword(password);
 			}
