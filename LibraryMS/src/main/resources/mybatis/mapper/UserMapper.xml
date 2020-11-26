@@ -44,6 +44,13 @@
 		where user_id=#{userId}
 	</update>
 	
+	<update id="updateUserBooksNumber" parameterType="com.ibm.domain.User">
+		update USER 
+		set 
+		books_number=#{user.booksNumber} 
+		where user_id=#{user.userId}
+	</update>
+	
 	<select id="selectAllUser" resultType="com.ibm.domain.User">
 		select * from user where identity=0 order by name
 	</select>

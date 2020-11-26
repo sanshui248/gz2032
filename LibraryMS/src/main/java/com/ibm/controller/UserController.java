@@ -172,7 +172,7 @@ public class UserController {
 				book.setSurplusNumber(book.getSurplusNumber() - 1);
 				this.bookService.update(book);
 				user.setBooksNumber(user.getBooksNumber() + 1);
-				this.userService.updateUser(user);
+				this.userService.updateUserBooksNumber(user);
 				return "借阅成功";
 			}
 		}
@@ -195,7 +195,7 @@ public class UserController {
 		book.setSurplusNumber(book.getSurplusNumber() + 1);
 		this.bookService.update(book);
 		user.setBooksNumber(user.getBooksNumber() - 1);
-		this.userService.updateUser(user);
+		this.userService.updateUserBooksNumber(user);
 		return "归还成功";
 	}
 	

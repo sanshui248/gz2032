@@ -35,4 +35,6 @@ public interface UserService {
 	public List<MyBookShelves> selectShelves(int userId);
 	
 	public int getUserId();
+
+	public void updateUserBooksNumber(User user);
 }

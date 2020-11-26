@@ -109,4 +109,10 @@ public class UserServiceImpl implements UserService {
 		return userId;
 	}
 
+	@Override
+	public void updateUserBooksNumber(User user) {
+		this.userMapper.updateUserBooksNumber(user);
+		
+	}
+
 }

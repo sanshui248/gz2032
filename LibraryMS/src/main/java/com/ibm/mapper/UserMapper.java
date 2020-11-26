@@ -32,4 +32,6 @@ public interface UserMapper {
 	public void updatePasswordByUserId(@Param("user") User user);//根据用户id修改密码
 	
 	public int getUserId();//获取用户登录的账号id
+
+	public void updateUserBooksNumber(@Param("user") User user);//更新用户的已借图书量
 }
