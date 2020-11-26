@@ -147,7 +147,7 @@ public class BorrowingDetails {
 	public void setBorrowStates(int borrowStates) {
 		this.borrowStates = borrowStates;
 		if (borrowStates==1) {
-			this.setBorrowStatesStr("借出");
+			this.setBorrowStatesStr("借阅中");
 		}else {
 			this.setBorrowStatesStr("已归还");
 		}
