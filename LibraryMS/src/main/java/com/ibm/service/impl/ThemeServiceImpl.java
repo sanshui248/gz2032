@@ -31,6 +31,11 @@ public class ThemeServiceImpl implements ThemeService {
 	}
 
 	@Override
+	public Integer getIdByName(String name) {
+		return themeMapper.getIdByName(name);
+	}
+
+	@Override
 	public void save(Theme theme) {
 		themeMapper.save(theme);
 	}

@@ -12,6 +12,10 @@
 		select * from country where country_id = #{id}
 	</select>
 	
+	<select id="getIdByName" parameterType="String" resultType="Integer">
+		select country_id from country where country_name = #{name}
+	</select>
+	
 	<insert id="save" parameterType="com.ibm.domain.Country">
 		insert into country(country_name) values (#{countryName})
 	</insert>

@@ -15,6 +15,8 @@ public interface CountryMapper {
 
 	public Country getById(Integer id);
 
+	public Integer getIdByName(String name);
+
 	public void save(Country country);
 
 	public void update(Country country);

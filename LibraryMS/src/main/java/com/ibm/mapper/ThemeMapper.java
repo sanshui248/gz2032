@@ -15,6 +15,8 @@ public interface ThemeMapper {
 
 	public Theme getById(Integer id);
 
+	public Integer getIdByName(String name);
+
 	public void save(Theme theme);
 
 	public void update(Theme theme);

@@ -31,6 +31,11 @@ public class TypeServiceImpl implements TypeService {
 	}
 
 	@Override
+	public Integer getIdByName(String name) {
+		return typeMapper.getIdByName(name);
+	}
+
+	@Override
 	public void save(Type type) {
 		typeMapper.save(type);
 	}

@@ -3,17 +3,28 @@ package com.ibm.controller;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ibm.domain.Book;
 import com.ibm.domain.BookLabel;
 import com.ibm.domain.BorrowingDetails;
+import com.ibm.domain.Country;
+import com.ibm.domain.Theme;
+import com.ibm.domain.Type;
 import com.ibm.service.BookService;
 import com.ibm.service.BorrowService;
+import com.ibm.service.CountryService;
+import com.ibm.service.ThemeService;
+import com.ibm.service.TypeService;
 
 /**
  * 
@@ -29,6 +40,15 @@ public class BookController {
 
 	@Autowired
 	private BorrowService borrowService;
+
+	@Autowired
+	private CountryService countryService;
+
+	@Autowired
+	private ThemeService themeService;
+
+	@Autowired
+	private TypeService typeService;
 
 	/**
 	 * @Description 获取图书信息列表
@@ -110,7 +130,7 @@ public class BookController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping("/update")
 	public String updateBook(@RequestBody Book book) {
-		if(book.getOffNumber() != 0) {
+		if (book.getOffNumber() != 0) {
 			book.setOffTime(new Date());
 		}
 		bookService.update(book);
@@ -128,5 +148,63 @@ public class BookController {
 		bookService.deleteById(bookId);
 		return "删除成功";
 	}
-	
+
+	/**
+	 * @Description导入图书信息
+	 * @param file
+	 * @return
+	 */
+	@CrossOrigin(origins = "*")
+	@RequestMapping("/import")
+	public String importUser(@RequestParam("file") MultipartFile file) {
+		try {
+			// 根据路径获取这个操作excel的实例
+			XSSFWorkbook wb = new XSSFWorkbook(file.getInputStream()); // 根据页面index 获取sheet页
+			XSSFSheet sheet = wb.getSheetAt(0);
+			XSSFRow row = null;
+
+			// 循环sesheet页中数据从第二行开始，第一行是标题
+			for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
+
+				// 获取每一行数据
+				row = sheet.getRow(i);
+
+				Book book = new Book();
+
+				book.setBookName(row.getCell(0).getStringCellValue());
+				Country country = new Country();
+				country.setCountryId(countryService.getIdByName(row.getCell(1).getStringCellValue()));
+				book.setCountry(country);
+				Theme theme = new Theme();
+				theme.setThemeId(themeService.getIdByName(row.getCell(2).getStringCellValue()));
+				book.setTheme(theme);
+				Type type = new Type();
+				type.setTypeId(typeService.getIdByName(row.getCell(3).getStringCellValue()));
+				book.setType(type);
+				String page = row.getCell(4).getStringCellValue().trim();
+				if (page.equals("短篇")) {
+					book.setPages(1);
+				} else if (page.equals("中篇")) {
+					book.setPages(2);
+				} else if (page.equals("长篇")) {
+					book.setPages(3);
+				} else if (page.equals("超长篇")) {
+					book.setPages(4);
+				}
+				book.setBrief(row.getCell(5).getStringCellValue());
+				book.setOnNumber(Integer.valueOf((int) row.getCell(6).getNumericCellValue()));
+				book.setOnTime(new Date());
+				book.setOffNumber(0);
+				book.setSurplusNumber(Integer.valueOf((int) row.getCell(6).getNumericCellValue()));
+
+				this.bookService.save(book);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "导入成功!";
+	}
+
 }

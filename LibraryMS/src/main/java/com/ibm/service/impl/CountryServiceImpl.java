@@ -31,6 +31,11 @@ public class CountryServiceImpl implements CountryService {
 	}
 
 	@Override
+	public Integer getIdByName(String name) {
+		return countryMapper.getIdByName(name);
+	}
+
+	@Override
 	public void save(Country country) {
 		countryMapper.save(country);
 	}

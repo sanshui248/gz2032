@@ -15,6 +15,8 @@ public interface TypeService {
 
 	public Type getById(Integer id);
 
+	public Integer getIdByName(String name);
+
 	public void save(Type type);
 
 	public void update(Type type);
