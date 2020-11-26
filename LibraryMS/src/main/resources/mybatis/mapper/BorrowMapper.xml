@@ -61,14 +61,14 @@
 		and borrow_id = #{borrowId}
 	</select>
 
-	<select id="selectByKey" parameterType="String"
+	<select id="selectByKey"
 		resultMap="borrowingDetailsMap">
 		select borrow.*, user.name, book.book_name
 		from user, book,
 		borrow
 		where user.user_id = borrow.user_id
-		and book.book_id =
-		borrow.book_id
+		and book.book_id = borrow.book_id
+		and borrow.user_id = #{userId}
 		and (user.name like concat('%', #{key}, '%') or
 		book.book_name like concat('%', #{key}, '%'))
 	</select>

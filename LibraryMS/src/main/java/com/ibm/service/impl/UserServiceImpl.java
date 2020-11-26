@@ -61,9 +61,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<BorrowingDetails> selectBorrowingDetailsByUserId(int userId) {
 		List<BorrowingDetails> borrowHistory = this.userMapper.selectBorrowingDetailsByUserId(userId);
-		for (BorrowingDetails borrowingDetails : borrowHistory) {
-			System.out.println(borrowingDetails.getBook().getBookId());
-		}
 		return borrowHistory;
 	}
 

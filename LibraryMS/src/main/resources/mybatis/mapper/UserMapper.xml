@@ -45,7 +45,7 @@
 	</update>
 	
 	<select id="selectAllUser" resultType="com.ibm.domain.User">
-		select * from user order by name
+		select * from user where identity=0 order by name
 	</select>
 	
 	<select id="selectUserListByVagueName" resultType="com.ibm.domain.User">
