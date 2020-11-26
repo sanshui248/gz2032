@@ -173,13 +173,25 @@ public class BookController {
 
 				book.setBookName(row.getCell(0).getStringCellValue());
 				Country country = new Country();
-				country.setCountryId(countryService.getIdByName(row.getCell(1).getStringCellValue()));
+				Integer countryId = countryService.getIdByName(row.getCell(1).getStringCellValue().trim());
+				if (country == null || countryId == 0) {
+					countryId = 9;
+				}
+				country.setCountryId(countryId);
 				book.setCountry(country);
 				Theme theme = new Theme();
-				theme.setThemeId(themeService.getIdByName(row.getCell(2).getStringCellValue()));
+				Integer themeId = themeService.getIdByName(row.getCell(2).getStringCellValue().trim());
+				if (themeId == null || themeId == 0) {
+					themeId = 10;
+				}
+				theme.setThemeId(themeId);
 				book.setTheme(theme);
 				Type type = new Type();
-				type.setTypeId(typeService.getIdByName(row.getCell(3).getStringCellValue()));
+				Integer typeId = typeService.getIdByName(row.getCell(3).getStringCellValue().trim());
+				if (typeId == null || typeId == 0) {
+					typeId = 8;
+				}
+				type.setTypeId(typeId);
 				book.setType(type);
 				String page = row.getCell(4).getStringCellValue().trim();
 				if (page.equals("短篇")) {
@@ -190,8 +202,10 @@ public class BookController {
 					book.setPages(3);
 				} else if (page.equals("超长篇")) {
 					book.setPages(4);
+				} else {
+					book.setPages(1);
 				}
-				book.setBrief(row.getCell(5).getStringCellValue());
+				book.setBrief(row.getCell(5).getStringCellValue().trim());
 				book.setOnNumber(Integer.valueOf((int) row.getCell(6).getNumericCellValue()));
 				book.setOnTime(new Date());
 				book.setOffNumber(0);
